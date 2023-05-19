@@ -1,4 +1,4 @@
--- set colorscheme to nightfly with protected call
+-- set colorscheme to catppuccin-mocha with protected call
 -- in case it isn't installed
 local status, _ = pcall(vim.cmd, "colorscheme catppuccin-mocha")
 if not status then

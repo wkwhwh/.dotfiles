@@ -1,4 +1,4 @@
--- auto install packer if not installed
+-- auto install lazy if not installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -21,17 +21,13 @@ end
 
 -- add list of plugins to install
 return lazy.setup({
-	"nvim-lua/plenary.nvim",                                          -- lua functions that many plugins use
+	"nvim-lua/plenary.nvim",         -- lua functions that many plugins use
 
-	{ "catppuccin/nvim" }, -- preferred colorscheme
+	{ "catppuccin/nvim", name = "catppuccin" }, -- preferred colorscheme
 
-	"christoomey/vim-tmux-navigator",                                 -- tmux & split window navigation
+	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
 
-	"szw/vim-maximizer",                                              -- maximizes and restores current window
-
-	-- essential plugins
-	"tpope/vim-surround",              -- add, delete, change surroundings (it's awesome)
-	"inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
+	"tpope/vim-surround",            -- add, delete, change word surround
 
 	-- commenting with gc
 	"numToStr/Comment.nvim",
@@ -83,19 +79,19 @@ return lazy.setup({
 
 	-- formatting & linting
 	"jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
-	"jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
+	"jayp0521/mason-null-ls.nvim",    -- bridges gap b/w mason & null-ls
 
-		-- treesitter configuration
-		{
-			"nvim-treesitter/nvim-treesitter",
-			build = function()
-				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-				ts_update()
-			end,
-			dependencies = {
-				"windwp/nvim-ts-autotag", -- autoclose tags
-			},
+	-- treesitter configuration
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = function()
+			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+			ts_update()
+		end,
+		dependencies = {
+			"windwp/nvim-ts-autotag", -- autoclose tags
 		},
+	},
 
 	-- auto closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
