@@ -1,5 +1,3 @@
-local wezterm = require("wezterm")
-
 local Theme = {}
 
 local themes = {
@@ -42,66 +40,47 @@ local palettes = themes[THEME_NAME]
 Theme.palette = palettes.dark
 
 Theme.colors = {
-	split = Theme.palette.surface0,
-	foreground = Theme.palette.text,
-	background = Theme.palette.base,
-	cursor_bg = Theme.palette.overlay2,
-	cursor_border = Theme.palette.overlay2,
-	cursor_fg = Theme.palette.base,
-	selection_bg = Theme.palette.surface2,
-	selection_fg = Theme.palette.text,
-	visual_bell = Theme.palette.surface0,
-	indexed = {
-		[16] = Theme.palette.peach,
-		[17] = Theme.palette.rosewater,
-	},
-	scrollbar_thumb = Theme.palette.surface2,
-	compose_cursor = Theme.palette.flamingo,
-	ansi = {
-		Theme.palette.surface0,
-		Theme.palette.red,
-		Theme.palette.green,
-		Theme.palette.yellow,
-		Theme.palette.blue,
-		Theme.palette.mauve,
-		Theme.palette.teal,
-		Theme.palette.text,
-	},
-	brights = {
-		Theme.palette.surface2,
-		Theme.palette.red,
-		Theme.palette.green,
-		Theme.palette.yellow,
-		Theme.palette.blue,
-		Theme.palette.mauve,
-		Theme.palette.teal,
-		Theme.palette.surface2,
-	},
+	foreground = "#dcd7ba",
+	background = "#1f1f28",
+
+	cursor_bg = "#c8c093",
+	cursor_fg = "#c8c093",
+	cursor_border = "#c8c093",
+
+	selection_fg = "#c8c093",
+	selection_bg = "#2d4f67",
+
+	scrollbar_thumb = "#16161d",
+	split = "#16161d",
+
+	ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
+	brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
+	indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
 	tab_bar = {
-		background = Theme.palette.mantle,
+		background = "#16161D",
 		active_tab = {
 			bg_color = "none",
-			fg_color = Theme.palette.subtext1,
+			fg_color = "#A3D4D5",
 			intensity = "Bold",
 			underline = "None",
 			italic = false,
 			strikethrough = false,
 		},
 		inactive_tab = {
-			bg_color = Theme.palette.mantle,
-			fg_color = Theme.palette.surface1,
+			bg_color = "#16161D",
+			fg_color = "#363646",
 		},
 		inactive_tab_hover = {
-			bg_color = Theme.palette.mantle,
-			fg_color = Theme.palette.surface1,
+			bg_color = "#16161D",
+			fg_color = "#363646",
 		},
 		new_tab = {
-			bg_color = Theme.palette.mantle,
-			fg_color = Theme.palette.subtext0,
+			bg_color = "#16161D",
+			fg_color = "#938056",
 		},
 		new_tab_hover = {
-			bg_color = Theme.palette.mantle,
-			fg_color = Theme.palette.surface2,
+			bg_color = "#16161D",
+			fg_color = "#2A2A37",
 		},
 	},
 }

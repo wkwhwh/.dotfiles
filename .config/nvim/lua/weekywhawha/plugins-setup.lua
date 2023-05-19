@@ -23,7 +23,7 @@ end
 return lazy.setup({
 	"nvim-lua/plenary.nvim",         -- lua functions that many plugins use
 
-	{ "catppuccin/nvim", name = "catppuccin" }, -- preferred colorscheme
+	{ "rebelot/kanagawa.nvim" }, -- preferred colorscheme
 
 	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
 
