@@ -58,13 +58,13 @@ cmp.setup({
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-Space>"] = cmp.mapping.complete(),     -- show completion suggestions. <C-Space> not work in windows terminal
-    ["<C-e>"] = cmp.mapping.abort(),            -- close completion window
+    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions. <C-Space> not work in windows terminal
+    ["<C-e>"] = cmp.mapping.abort(),        -- close completion window
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,     -- e.g. console.log -> console.inlog -> console.info
-          select = true,                              -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          behavior = cmp.ConfirmBehavior.Replace, -- e.g. console.log -> console.inlog -> console.info
+          select = true,                          -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         })
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
@@ -75,14 +75,14 @@ cmp.setup({
   }),
   -- sources for autocompletion
   sources = cmp.config.sources({
-    { name = "nvim_lsp" },                  -- lsp
-    { name = "luasnip" },                   -- snippets
+    { name = "nvim_lsp" },                     -- lsp
+    { name = "luasnip" },                      -- snippets
     { name = "buffer",  keyword_length = 5, }, -- text within current buffer
-    { name = "path" },                      -- file system paths
+    { name = "path" },                         -- file system paths
   }),
   window = {
     completion = cmp.config.window.bordered({
-      col_offset = -3,     -- align the abbr and word on cursor (due to fields order below)
+      col_offset = -3, -- align the abbr and word on cursor (due to fields order below)
       side_padding = 0,
     }),
     documentation = cmp.config.window.bordered(),
@@ -90,8 +90,8 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format({
-      mode = "symbol_text",     -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-      maxwidth = 50,            -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+      maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       -- menu = ({ -- showing type in menu
       --   nvim_lsp = "(LSP)",
       --   path = "(Path)",
@@ -101,7 +101,7 @@ cmp.setup({
       before = function(entry, vim_item)
         vim_item.menu = "(" .. vim_item.kind .. ")"
         -- vim_item.dup = 0
-        vim_item = formatForTailwindCSS(entry, vim_item)     -- for tailwind css autocomplete
+        vim_item = formatForTailwindCSS(entry, vim_item) -- for tailwind css autocomplete
         return vim_item
       end,
     }),

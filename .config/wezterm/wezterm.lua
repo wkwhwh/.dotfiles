@@ -3,13 +3,21 @@ local Tab = require("tab")
 local Theme = require("theme")
 local Keys = require("keys")
 
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
+
 Tab.setup()
 
 return {
 	font = wezterm.font_with_fallback({
 		"Iosevka Nerd Font Mono",
-		"Segoe UI Emoji",
+		"Hack Nerd Font Mono",
 	}),
+	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	font_size = 12,
 	underline_thickness = "200%",
 	underline_position = "-3pt",

@@ -23,7 +23,7 @@ end
 return lazy.setup({
 	"nvim-lua/plenary.nvim",         -- lua functions that many plugins use
 
-	{ "rebelot/kanagawa.nvim" }, -- preferred colorscheme
+	{ "rebelot/kanagawa.nvim" },     -- preferred colorscheme
 
 	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
 
@@ -31,9 +31,6 @@ return lazy.setup({
 
 	-- commenting with gc
 	"numToStr/Comment.nvim",
-
-	-- vs-code like icons
-	"nvim-tree/nvim-web-devicons",
 
 	-- statusline
 	"nvim-lualine/lualine.nvim",
@@ -47,6 +44,8 @@ return lazy.setup({
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
 	},
+
+	"nvim-telescope/telescope-ui-select.nvim",
 
 	-- autocompletion
 	"hrsh7th/nvim-cmp",  -- completion plugin
@@ -63,16 +62,8 @@ return lazy.setup({
 	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 
 	-- configuring lsp servers
-	"neovim/nvim-lspconfig", -- easily configure language servers
-	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
-	{
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		dependencies = {
-			{ "nvim-tree/nvim-web-devicons" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-	},                                   -- enhanced lsp uis
+	"neovim/nvim-lspconfig",             -- easily configure language servers
+	"hrsh7th/cmp-nvim-lsp",              -- for autocompletion
 
 	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
 	"onsails/lspkind.nvim",              -- vs-code like icons for autocompletion
@@ -99,4 +90,9 @@ return lazy.setup({
 	-- git integration
 	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 	"tpope/vim-fugitive",     -- git plugin
+
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" }
+	},
 })
