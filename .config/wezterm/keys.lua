@@ -45,38 +45,75 @@ return {
 	split_nav("resize", "k"),
 	split_nav("resize", "l"),
 	{
-		mods = "CMD",
-		key = [[\]],
+		mods = "CMD|SHIFT",
+		key = "|",
 		action = wezterm.action({
 			SplitHorizontal = { domain = "CurrentPaneDomain" },
 		}),
 	},
 	{
 		mods = "CMD|SHIFT",
-		key = [[|]],
-		action = wezterm.action.SplitPane({
-			top_level = true,
-			direction = "Right",
-			size = { Percent = 50 },
-		}),
-	},
-	{
-		mods = "CMD",
-		key = [[-]],
+		key = "_",
 		action = wezterm.action({
 			SplitVertical = { domain = "CurrentPaneDomain" },
 		}),
 	},
-	{
-		mods = "CMD|SHIFT",
-		key = [[_]],
-		action = wezterm.action.SplitPane({
-			top_level = true,
-			direction = "Down",
-			size = { Percent = 50 },
-		}),
-	},
-	{ key = "w", mods = "SHIFT|CMD", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
+	{ key = "w", mods = "CMD|SHIFT", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
 	{ key = "[", mods = "CMD|SHIFT", action = wezterm.action.MoveTabRelative(-1) },
 	{ key = "]", mods = "CMD|SHIFT", action = wezterm.action.MoveTabRelative(1) },
+	{
+		key = 'u',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = 'l',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = ',',
+		mods = 'SHIFT|CMD',
+		action = wezterm.action.ShowDebugOverlay,
+	},
+	{
+		key = 'X',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = 'X',
+		mods = 'SHIFT|CMD',
+		action = wezterm.action.ActivateCopyMode,
+	},
+	{
+		key = 'P',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = 'P',
+		mods = 'SHIFT|CMD',
+		action = wezterm.action.ActivateCommandPalette,
+	},
+	{
+		key = 'Space',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = 'Space',
+		mods = 'SHIFT|CMD',
+		action = wezterm.action.QuickSelect,
+	},
+	{
+		key = 'Z',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = 'Z',
+		mods = 'SHIFT|CMD',
+		action = wezterm.action.TogglePaneZoomState,
+	},
 }

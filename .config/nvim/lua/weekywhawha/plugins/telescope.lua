@@ -16,8 +16,8 @@ if not actions_setup then
 	return
 end
 
--- import trouble actions safely
-local actions_setup, trouble = pcall(require, "trouble.providers.telescope")
+-- import trouble safely
+local actions_setup, trouble = pcall(require, "trouble")
 if not actions_setup then
 	return
 end
@@ -30,23 +30,22 @@ telescope.setup({
 			i = {
 				["<C-k>"] = actions.move_selection_previous, -- move to prev result
 				["<C-j>"] = actions.move_selection_next, -- move to next result
-				["<C-t>"] = trouble.smart_open_with_trouble,
 				["<C-q>"] = function(prompt_bufnr)
 					actions.smart_send_to_qflist(prompt_bufnr)
-					require("trouble").open("quickfix")
-				end
+					trouble.open("quickfix")
+				end,
 			},
 		},
 	},
 	extensions = {
 		["ui-select"] = {
-			themes.get_dropdown {
+			themes.get_dropdown({
 				-- even more opts
-			}
-		}
+			}),
+		},
 	},
 })
 
 telescope.load_extension("fzf")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("ui-select")
+telescope.load_extension("file_browser")
+telescope.load_extension("ui-select")

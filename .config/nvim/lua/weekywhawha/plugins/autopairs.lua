@@ -6,18 +6,12 @@ end
 
 -- configure autopairs
 autopairs.setup({
-  fast_wrap = {
-    chars = { "{", "[", "(", '"', "'", "`" },
-    map = "<C-l>",
-    keys = "asdfghjklqwertyuiop",
-    pattern = [=[[%'%"%)%>%]%)%}%,]]=],
-    check_comma = true,
-    end_key = "L",
-    highlight = "PmenuSel",
-    hightlight_grey = "NonText",
+  check_ts = true,                      -- enable treesitter
+  ts_config = {
+    lua = { "string" },                 -- don't add pairs in lua string treesitter nodes
+    javascript = { "template_string" }, -- don't add pairs in javscript template_string treesitter nodes
+    java = false,                       -- don't check treesitter on java
   },
-  check_ts = true,
-  enable_check_bracket_line = true,
 })
 
 -- import nvim-autopairs completion functionality safely
@@ -33,9 +27,4 @@ if not cmp_setup then
 end
 
 -- make autopairs and completion work together
-cmp.event:on("confirm_done",
-  cmp_autopairs.on_confirm_done({
-    map_char = {
-      tex = "",
-    },
-  }))
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

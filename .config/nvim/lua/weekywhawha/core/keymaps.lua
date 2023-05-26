@@ -14,10 +14,6 @@ keymap.set("n", "<leader>nh", ":nohl<CR>")
 keymap.set("n", "x", '"_x')
 keymap.set("n", "X", '"_X')
 
--- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>") -- increment
-keymap.set("n", "<leader>-", "<C-x>") -- decrement
-
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v")        -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s")        -- split window horizontally
@@ -30,8 +26,8 @@ keymap.set("n", "<leader>tn", ":tabn<CR>")     --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>")     --  go to previous tab
 
 -- move highlighted selection
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("v", "<C-D>", ":m '>+1<CR>gv=gv")
+keymap.set("v", "<C-U>", ":m '<-2<CR>gv=gv")
 
 -- append line below to current line without moving cursor
 keymap.set("n", "J", "mzJ`z")
