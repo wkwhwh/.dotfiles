@@ -17,4 +17,3 @@ yabai -m rule --add app="^Fireface USB Settings$" manage=off
 yabai -m rule --add app="^TotalMix FX$" manage=off
 yabai -m rule --add app="^Shadow PC$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
-yabai -m rule --add app="^stremio$" manage=off
