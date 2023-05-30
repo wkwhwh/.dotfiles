@@ -1,4 +1,3 @@
--- import gitsigns plugin safely
 local setup, gitsigns = pcall(require, "gitsigns")
 if not setup then
   return
@@ -6,7 +5,6 @@ end
 
 local keymap = vim.keymap
 
--- configure/enable gitsigns
 gitsigns.setup({
   trouble = true,
   _inline2 = true,

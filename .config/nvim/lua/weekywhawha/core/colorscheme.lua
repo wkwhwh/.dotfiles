@@ -1,7 +1,3 @@
--- set colorscheme to kanagawa with protected call
--- in case it isn't installed
-
--- import kanagawa plugin safely
 local setup, kanagawa = pcall(require, "kanagawa")
 if not setup then
   return
@@ -46,6 +42,6 @@ kanagawa.setup({
 
 local status, _ = pcall(vim.cmd, "colorscheme kanagawa")
 if not status then
-  print("Colorscheme not found!") -- print error if colorscheme not installed
+  print("Colorscheme not found!")
   return
 end

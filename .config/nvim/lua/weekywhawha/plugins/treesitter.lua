@@ -1,10 +1,8 @@
--- import nvim-treesitter plugin safely
-local status, treesitter = pcall(require, "nvim-treesitter.configs")
-if not status then
+local setup, treesitter = pcall(require, "nvim-treesitter.configs")
+if not setup then
   return
 end
 
--- configure treesitter
 treesitter.setup({
   -- enable syntax highlighting
   highlight = {

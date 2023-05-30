@@ -1,6 +1,5 @@
--- import lualine plugin safely
-local status, lualine = pcall(require, "lualine")
-if not status then
+local setup, lualine = pcall(require, "lualine")
+if not setup then
 	return
 end
 

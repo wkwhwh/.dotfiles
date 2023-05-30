@@ -1,11 +1,7 @@
 -- set leader key to space
 vim.g.mapleader = " "
 
-local keymap = vim.keymap -- for conciseness
-
----------------------
--- General Keymaps
----------------------
+local keymap = vim.keymap
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
@@ -58,10 +54,6 @@ keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- replace word on cursor global
 keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
-----------------------
--- Plugin Keybinds
-----------------------
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")  -- find files within current working directory, respects .gitignore

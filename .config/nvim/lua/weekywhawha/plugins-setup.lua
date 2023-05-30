@@ -1,4 +1,3 @@
--- auto install lazy if not installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -13,21 +12,23 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- import lazy safely
 local status, lazy = pcall(require, "lazy")
 if not status then
 	return
 end
 
--- add list of plugins to install
 return lazy.setup({
-	"nvim-lua/plenary.nvim",         -- lua functions that many plugins use
+	-- lua functions that many plugins use
+	"nvim-lua/plenary.nvim",
 
-	{ "rebelot/kanagawa.nvim" },     -- preferred colorscheme
+	-- colorscheme
+	"rebelot/kanagawa.nvim",
 
-	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
+	-- tmux & split window navigation
+	"christoomey/vim-tmux-navigator",
 
-	"tpope/vim-surround",            -- add, delete, change word surround
+	-- add, delete, change word surround
+	"tpope/vim-surround",
 
 	-- commenting with gc
 	"numToStr/Comment.nvim",
@@ -91,6 +92,7 @@ return lazy.setup({
 	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 	"tpope/vim-fugitive",     -- git plugin
 
+	-- diagnostics, references, qflist, etc...
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },

@@ -1,28 +1,23 @@
--- import telescope plugin safely
 local telescope_setup, telescope = pcall(require, "telescope")
 if not telescope_setup then
 	return
 end
 
--- import telescope plugin safely
-local telescope_setup, themes = pcall(require, "telescope.themes")
-if not telescope_setup then
+local themes_setup, themes = pcall(require, "telescope.themes")
+if not themes_setup then
 	return
 end
 
--- import telescope actions safely
 local actions_setup, actions = pcall(require, "telescope.actions")
 if not actions_setup then
 	return
 end
 
--- import trouble safely
-local actions_setup, trouble = pcall(require, "trouble")
-if not actions_setup then
+local trouble_setup, trouble = pcall(require, "trouble")
+if not trouble_setup then
 	return
 end
 
--- configure telescope
 telescope.setup({
 	-- configure custom mappings
 	defaults = {
@@ -39,9 +34,9 @@ telescope.setup({
 	},
 	extensions = {
 		["ui-select"] = {
-			themes.get_dropdown({
+			themes.get_dropdown {
 				-- even more opts
-			}),
+			},
 		},
 	},
 })
