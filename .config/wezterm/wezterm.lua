@@ -6,7 +6,7 @@ local Keys = require("keys")
 local mux = wezterm.mux
 
 wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
+	local window = mux.spawn_window(cmd or {})
 	window:gui_window():maximize()
 end)
 
