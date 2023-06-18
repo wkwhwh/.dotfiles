@@ -40,10 +40,12 @@ return lazy.setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },  -- dependency for better sorting performance
 	{ "nvim-telescope/telescope.nvim",            branch = "0.1.x" }, -- fuzzy finder
 
-	-- file explorer inside telescope
+	-- netwr-like file browser
 	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+		'stevearc/oil.nvim',
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	"nvim-telescope/telescope-ui-select.nvim",

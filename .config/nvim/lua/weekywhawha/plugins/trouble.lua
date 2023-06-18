@@ -12,7 +12,7 @@ keymap.set("n", "<leader>xD", "<cmd>TroubleToggle workspace_diagnostics<CR>")
 keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>")
 keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<CR>")
 keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<CR>")
-keymap.set("n", "<leader>xr", "<cmd>TroubleToggle lsp_references<CR>")
+keymap.set("n", "<leader>gr", "<cmd>TroubleToggle lsp_references<CR>")
 
 keymap.set("n", "]x", function()
   pcall(trouble.next, { skip_groups = true, jump = true })

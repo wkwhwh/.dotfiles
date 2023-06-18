@@ -22,8 +22,8 @@ keymap.set("n", "<leader>tn", ":tabn<CR>")     --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>")     --  go to previous tab
 
 -- move highlighted selection
-keymap.set("v", "<C-D>", ":m '>+1<CR>gv=gv")
-keymap.set("v", "<C-U>", ":m '<-2<CR>gv=gv")
+keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
+keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
 
 -- append line below to current line without moving cursor
 keymap.set("n", "J", "mzJ`z")
@@ -46,12 +46,6 @@ keymap.set("n", "<leader>Y", [["+Y]])
 -- delete to void register
 keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- quickfix navigation
-keymap.set("n", "<leader>K", "<cmd>cnext<CR>zz")
-keymap.set("n", "<leader>J", "<cmd>cprev<CR>zz")
-keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
 -- replace word on cursor global
 keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
@@ -69,7 +63,7 @@ keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>")  -- list git br
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>")    -- list current changes per file with diff preview ["gs" for git status]
 
 -- file explorer
-keymap.set("n", "<leader>fe", "<cmd>Telescope file_browser<cr>")
+keymap.set("n", "<leader>fe", vim.cmd.Oil)
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary

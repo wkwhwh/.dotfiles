@@ -13,6 +13,17 @@ if not typescript_setup then
 	return
 end
 
+local diagnostics_active = true
+local toggle_diagnostics = function()
+	diagnostics_active = not diagnostics_active
+	if diagnostics_active then
+		vim.diagnostic.show()
+	else
+		vim.diagnostic.hide()
+	end
+end
+
+
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	opts = opts or {}
@@ -28,7 +39,6 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- set keybinds
-	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)           -- show references
 	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)          -- go to delcaration
 	keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)           -- see definition and make edits in window
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)       -- go to implementation
@@ -38,6 +48,7 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)         -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)         -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)                 -- show documentation for what is under cursor
+	keymap.set("n", "<leader>td", toggle_diagnostics)                              -- toggles inline diagnostics
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then
@@ -59,6 +70,12 @@ end
 
 -- configure html server
 lspconfig["html"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure rust server
+lspconfig["rust_analyzer"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })

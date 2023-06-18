@@ -7,11 +7,6 @@ local keymap = vim.keymap
 
 gitsigns.setup({
   trouble = true,
-  _inline2 = true,
-  keymaps = {},
-  preview_config = {
-    border = "rounded"
-  },
 })
 
 keymap.set("n", "<leader>hd", "<cmd>Gitsigns preview_hunk_inline<CR>")
