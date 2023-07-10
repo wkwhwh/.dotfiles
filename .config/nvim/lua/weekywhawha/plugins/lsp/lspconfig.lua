@@ -62,11 +62,22 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
-local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+local signs = { Error = " ", Warn = " ", Info = " ", Hint = "󰠠 " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+-- Show error as virtual text (inline) and hints as underlines
+vim.diagnostic.config({
+	severity_sort = true,
+	underline = {
+		severity = { max = vim.diagnostic.severity.INFO }
+	},
+	virtual_text = {
+		severity = { min = vim.diagnostic.severity.ERROR }
+	}
+})
 
 -- configure html server
 lspconfig["html"].setup({
@@ -105,13 +116,6 @@ lspconfig["cssls"].setup({
 lspconfig["tailwindcss"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
-
--- configure emmet language server
-lspconfig["emmet_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
 -- configure lua server (with special settings)

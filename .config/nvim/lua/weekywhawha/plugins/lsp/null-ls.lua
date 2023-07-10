@@ -20,7 +20,7 @@ null_ls.setup({
       -- js/ts linter
       -- only enable eslint if root has .eslintrc.js
       condition = function(utils)
-        return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
+        return utils.root_has_file(".eslintrc.cjs") -- change file extension if you use something else
       end,
     }),
   },

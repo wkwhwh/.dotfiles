@@ -24,7 +24,6 @@ mason_lspconfig.setup({
     "cssls",
     "tailwindcss",
     "lua_ls",
-    "emmet_ls",
     "rust_analyzer",
   },
   -- auto-install configured servers (with lspconfig)

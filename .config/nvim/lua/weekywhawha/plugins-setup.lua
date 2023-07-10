@@ -37,8 +37,8 @@ return lazy.setup({
 	"nvim-lualine/lualine.nvim",
 
 	-- fuzzy finding w/ telescope
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- dependency for better sorting performance
-	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" }, -- fuzzy finder
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },  -- dependency for better sorting performance
+	{ "nvim-telescope/telescope.nvim",            branch = "0.1.x" }, -- fuzzy finder
 
 	-- netwr-like file browser
 	{
@@ -51,32 +51,32 @@ return lazy.setup({
 	"nvim-telescope/telescope-ui-select.nvim",
 
 	-- autocompletion
-	"hrsh7th/nvim-cmp", -- completion plugin
+	"hrsh7th/nvim-cmp",  -- completion plugin
 	"hrsh7th/cmp-buffer", -- source for text in buffer
-	"hrsh7th/cmp-path", -- source for file system paths
+	"hrsh7th/cmp-path",  -- source for file system paths
 
 	-- snippets
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets" },
 	},
-	"saadparwaiz1/cmp_luasnip", -- for autocompletion
+	"saadparwaiz1/cmp_luasnip",    -- for autocompletion
 	"rafamadriz/friendly-snippets", -- useful snippets
 
 	-- managing & installing lsp servers, linters & formatters
-	"williamboman/mason.nvim", -- in charge of managing lsp servers, linters & formatters
+	"williamboman/mason.nvim",          -- in charge of managing lsp servers, linters & formatters
 	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 
 	-- configuring lsp servers
-	"neovim/nvim-lspconfig", -- easily configure language servers
-	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
+	"neovim/nvim-lspconfig",             -- easily configure language servers
+	"hrsh7th/cmp-nvim-lsp",              -- for autocompletion
 
 	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
-	"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
+	"onsails/lspkind.nvim",              -- vs-code like icons for autocompletion
 
 	-- formatting & linting
 	"jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
-	"jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
+	"jayp0521/mason-null-ls.nvim",    -- bridges gap b/w mason & null-ls
 
 	-- treesitter configuration
 	{
@@ -86,16 +86,27 @@ return lazy.setup({
 			ts_update()
 		end,
 		dependencies = {
-			"windwp/nvim-ts-autotag", -- autoclose tags
+			"windwp/nvim-ts-autotag",                   -- autoclose tags
+			'JoosepAlviste/nvim-ts-context-commentstring', -- context aware commentstring
 		},
+	},
+
+	-- treesitter context
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 
 	-- auto closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 
 	-- git integration
-	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
-	"tpope/vim-fugitive", -- git plugin
+	"lewis6991/gitsigns.nvim",                                                               -- show line modifications on left hand side
+	-- "tpope/vim-fugitive", -- git commands in vim
+	{ 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }, -- git ui
+
+	-- view diffs in a split window
+	"sindrets/diffview.nvim",
 
 	-- diagnostics, references, qflist, etc...
 	{
@@ -134,5 +145,11 @@ return lazy.setup({
 				desc = "Remote Flash",
 			},
 		},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		build = ":Copilot auth",
+		event = "InsertEnter",
 	},
 })
