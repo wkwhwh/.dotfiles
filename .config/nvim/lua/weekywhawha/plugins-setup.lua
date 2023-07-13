@@ -68,15 +68,12 @@ return lazy.setup({
 	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 
 	-- configuring lsp servers
-	"neovim/nvim-lspconfig",             -- easily configure language servers
-	"hrsh7th/cmp-nvim-lsp",              -- for autocompletion
+	"neovim/nvim-lspconfig",        -- easily configure language servers
+	"hrsh7th/cmp-nvim-lsp",         -- for autocompletion
 
-	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
-	"onsails/lspkind.nvim",              -- vs-code like icons for autocompletion
+	"lukas-reineke/lsp-format.nvim", -- format on save
 
-	-- formatting & linting
-	"jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
-	"jayp0521/mason-null-ls.nvim",    -- bridges gap b/w mason & null-ls
+	"onsails/lspkind.nvim",         -- vs-code like icons for autocompletion
 
 	-- treesitter configuration
 	{
@@ -91,18 +88,11 @@ return lazy.setup({
 		},
 	},
 
-	-- treesitter context
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-	},
-
 	-- auto closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 
 	-- git integration
 	"lewis6991/gitsigns.nvim",                                                               -- show line modifications on left hand side
-	-- "tpope/vim-fugitive", -- git commands in vim
 	{ 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }, -- git ui
 
 	-- view diffs in a split window

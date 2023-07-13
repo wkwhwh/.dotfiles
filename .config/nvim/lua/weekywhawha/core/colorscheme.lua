@@ -4,7 +4,7 @@ if not setup then
 end
 
 kanagawa.setup({
-  compile = true,
+  compile = false,
   dimInactive = false,
   colors = {
     theme = {

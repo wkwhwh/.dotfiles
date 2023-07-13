@@ -5,10 +5,7 @@ end
 
 treesitter.setup({
   -- enable syntax highlighting
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+  highlight = { enable = true },
   -- enable indentation
   indent = { enable = true },
   -- enable autotagging (w/ nvim-ts-autotag plugin)
@@ -34,6 +31,7 @@ treesitter.setup({
     "rust"
   },
   context_commentstring = {
+    enable = true,
     config = {
       javascript = {
         __default = '// %s',
@@ -45,6 +43,4 @@ treesitter.setup({
       typescript = { __default = '// %s', __multiline = '/* %s */' },
     },
   },
-  -- auto install above language parsers
-  auto_install = true,
 })
