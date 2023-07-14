@@ -4,8 +4,16 @@ if not setup then
 end
 
 neogit.setup {
-  kind = "split",
-  integrations = {
+  kind                        = "split",
+  console_timeout             = 10000,
+  auto_show_console           = true,
+  disable_hint                = true,
+  disable_commit_confirmation = true,
+  integrations                = {
     diffview = true
+  },
+  signs                       = {
+    section = { "", "" },
+    item    = { "", "" },
   },
 }
