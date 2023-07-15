@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 -- clear search highlights
-keymap.set("n", "<leader>nh", "<cmd>nohl<CR>")
+keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
