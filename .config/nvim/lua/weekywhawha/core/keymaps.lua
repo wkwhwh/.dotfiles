@@ -3,8 +3,19 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+-- better up/down
+keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
 -- clear search highlights
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
+
+-- clear search, diff update and redraw
+keymap.set(
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>"
+)
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
@@ -56,4 +67,4 @@ keymap.set("n", "<leader>dq", "<cmd>DiffviewClose<cr>")         -- list git comm
 keymap.set("n", "<leader>fe", "<cmd>Oil<CR>")
 
 -- restart lsp server
-keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>") -- mapping to restart lsp if necessary
+keymap.set("n", "<leader>rl", "<cmd>LspRestart<CR>") -- mapping to restart lsp if necessary
