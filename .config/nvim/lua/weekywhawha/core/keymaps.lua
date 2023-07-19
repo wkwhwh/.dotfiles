@@ -7,6 +7,13 @@ local keymap = vim.keymap
 keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
+-- buffers navigation
+keymap.set("n", "[b", "<cmd>bprevious<cr>")
+keymap.set("n", "]b", "<cmd>bnext<cr>")
+keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>")
+keymap.set("n", "<leader>bD", "<cmd>bdelete!<cr>")
+keymap.set("n", "<leader>bo", "<cmd>%bd <bar> e# <bar> bd #<cr>")
+
 -- clear search highlights
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 
