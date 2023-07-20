@@ -142,4 +142,14 @@ return lazy.setup({
 		build = ":Copilot auth",
 		event = "InsertEnter",
 	},
+	{
+		"epwalsh/obsidian.nvim",
+		lazy = true,
+		event = { "BufReadPre " .. vim.fn.expand "~" .. "/Documents/Obsidian/Main/**.md" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+			"nvim-telescope/telescope.nvim",
+		},
+	},
 })

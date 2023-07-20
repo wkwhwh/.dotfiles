@@ -118,8 +118,8 @@ lspconfig["efm"].setup {
 	init_options = { documentFormatting = true },
 	root_dir = vim.loop.cwd,
 	filetypes = vim.tbl_keys(languages),
+	rootMarkers = { ".git/" },
 	settings = {
-		rootMarkers = { ".git/" },
 		lintDebounce = 100,
 		languages = languages,
 	},
