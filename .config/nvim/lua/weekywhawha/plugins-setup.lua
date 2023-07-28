@@ -39,6 +39,7 @@ return lazy.setup({
 	-- fuzzy finding w/ telescope
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },  -- dependency for better sorting performance
 	{ "nvim-telescope/telescope.nvim",            branch = "0.1.x" }, -- fuzzy finder
+	"nvim-telescope/telescope-ui-select.nvim",                       -- ui for telescope
 
 	-- netwr-like file browser
 	{
@@ -47,8 +48,6 @@ return lazy.setup({
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-
-	"nvim-telescope/telescope-ui-select.nvim",
 
 	-- autocompletion
 	"hrsh7th/nvim-cmp",  -- completion plugin
@@ -92,8 +91,15 @@ return lazy.setup({
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 
 	-- git integration
-	"lewis6991/gitsigns.nvim",                                                               -- show line modifications on left hand side
-	{ 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }, -- git ui
+	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
+	{
+		'NeogitOrg/neogit',     -- git interface
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'sindrets/diffview.nvim',
+			'nvim-telescope/telescope.nvim'
+		},
+	},
 
 	-- view diffs in a split window
 	"sindrets/diffview.nvim",

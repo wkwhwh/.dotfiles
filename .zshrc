@@ -71,3 +71,4 @@ export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 [[ ! -f ~/.p10k.zsh ]] || source ~/zsh-plugins/.p10k.zsh
 
 export GPG_TTY=\$(tty)
+export HOMEBREW_NO_ANALYTICS=1

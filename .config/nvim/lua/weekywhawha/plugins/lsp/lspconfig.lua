@@ -53,13 +53,13 @@ local on_attach = function(client, bufnr)
 				diagnostics = {},
 			},
 		})
-	end, opts)                                                                     -- see available source actions
-	keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)       -- smart rename
-	keymap.set("n", "<leader>vd", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)         -- jump to previous diagnostic in buffer
-	keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)         -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)                 -- show documentation for what is under cursor
-	keymap.set("n", "<leader>td", toggle_diagnostics)                              -- toggles inline diagnostics
+	end, opts)                                                                                     -- see available source actions
+	keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)                       -- smart rename
+	keymap.set("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float({scope = 'line'})<CR>", opts) -- show diagnostics for cursor
+	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)                         -- jump to previous diagnostic in buffer
+	keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)                         -- jump to next diagnostic in buffer
+	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)                                 -- show documentation for what is under cursor
+	keymap.set("n", "<leader>td", toggle_diagnostics)                                              -- toggles inline diagnostics
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -127,12 +127,20 @@ lspconfig["efm"].setup {
 
 -- Show error as virtual text (inline) and hints as underlines
 vim.diagnostic.config({
-	severity_sort = true,
+	float = {
+		source = "always",
+		border = vim.g.FloatBorders,
+		title = "Diagnostics",
+		title_pos = "left",
+		header = "",
+	},
+	underline = true,
+	signs = true,
 	update_in_insert = false,
+	severity_sort = true,
 	virtual_text = {
 		severity = { min = vim.diagnostic.severity.ERROR },
 	},
-	autoformat = true,
 })
 
 -- configure html server
