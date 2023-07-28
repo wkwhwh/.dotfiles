@@ -1,24 +1,17 @@
 # Dotfiles
 
-This repository contains my personal dotfiles, which include configurations for various applications and tools. These dotfiles are designed to enhance my development workflow and personalize my working environment. The following applications and tools are included:
-
-- [tmux](#tmux)
-- [Neovim](#neovim)
-- [yabai](#yabai)
-- [skhd](#skhd)
-- [wezterm](#wezterm)
-- [zsh](#zsh)
+This repository contains my personal dotfiles, which include configurations for various applications and tools. These dotfiles are designed to enhance my development workflow and personalize my working environment.
 
 Feel free to explore and use any parts of these dotfiles that are relevant to your needs. You can find specific configurations and instructions for each tool below.
 
 ## Table of Contents
 
-- [tmux](#tmux)
-- [Neovim](#neovim)
-- [yabai](#yabai)
-- [skhd](#skhd)
-- [wezterm](#wezterm)
-- [zsh](#zsh)
+-   [tmux](#tmux)
+-   [Neovim](#neovim)
+-   [yabai](#yabai)
+-   [skhd](#skhd)
+-   [wezterm](#wezterm)
+-   [zsh](#zsh)
 
 ## tmux
 
@@ -118,11 +111,3 @@ $ cp .zshrc ~/
 ```
 
 3. Restart your terminal or run `source ~/.zshrc` to load the new configuration.
-
-## Contributing
-
-If you have any suggestions, improvements, or find any issues with these dotfiles, feel free to open an issue or submit a pull request. Your contributions are welcome!
-
-## License
-
-This repository is licensed under the [MIT License](LICENSE).
