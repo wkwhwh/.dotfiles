@@ -86,6 +86,12 @@ return lazy.setup({
 			'JoosepAlviste/nvim-ts-context-commentstring', -- context aware commentstring
 		},
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "BufReadPre",
+		enabled = true,
+		opts = { mode = "cursor" },
+	},
 
 	-- auto closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
