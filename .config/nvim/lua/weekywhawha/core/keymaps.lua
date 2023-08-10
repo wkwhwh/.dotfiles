@@ -68,7 +68,6 @@ keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")                -- open git stat
 keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<cr>")          -- open git diff window
 keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory %<cr>") -- open git file history window for file
 keymap.set("n", "<leader>dH", "<cmd>DiffviewFileHistory<cr>")   -- open git file history window for branch
-keymap.set("n", "<leader>dq", "<cmd>DiffviewClose<cr>")         -- list git commits
 
 -- file explorer
 keymap.set("n", "<leader>fe", "<cmd>Oil<CR>")
