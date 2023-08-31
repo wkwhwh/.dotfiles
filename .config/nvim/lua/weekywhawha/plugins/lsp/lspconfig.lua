@@ -39,9 +39,9 @@ local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
   -- set keybinds
-  keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)        -- go to delcaration
-  keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)         -- see definition and make edits in window
-  keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)     -- go to implementation
+  keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)         -- go to delcaration
+  keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)          -- see definition and make edits in window
+  keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)      -- go to implementation
   keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts) -- see available code actions
   keymap.set("n", "<leader>cA", function()
     vim.lsp.buf.code_action({
@@ -52,13 +52,13 @@ local on_attach = function(client, bufnr)
         diagnostics = {},
       },
     })
-  end, opts)                                                                                     -- see available source actions
-  keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)                       -- smart rename
+  end, opts)                                                                                      -- see available source actions
+  keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)                        -- smart rename
   keymap.set("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float({scope = 'line'})<CR>", opts) -- show diagnostics for cursor
-  keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)                         -- jump to previous diagnostic in buffer
-  keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)                         -- jump to next diagnostic in buffer
-  keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)                                 -- show documentation for what is under cursor
-  keymap.set("n", "<leader>td", toggle_diagnostics)                                              -- toggles inline diagnostics
+  keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)                          -- jump to previous diagnostic in buffer
+  keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)                          -- jump to next diagnostic in buffer
+  keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)                                  -- show documentation for what is under cursor
+  keymap.set("n", "<leader>td", toggle_diagnostics)                                               -- toggles inline diagnostics
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -148,6 +148,12 @@ lspconfig["html"].setup({
 
 -- configure rust server
 lspconfig["rust_analyzer"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- configure svelte server
+lspconfig["svelte"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })

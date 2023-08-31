@@ -149,12 +149,6 @@ return lazy.setup({
 		},
 	},
 	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		build = ":Copilot auth",
-		event = "InsertEnter",
-	},
-	{
 		"epwalsh/obsidian.nvim",
 		lazy = true,
 		event = { "BufReadPre " .. vim.fn.expand "~" .. "/Documents/Obsidian/Main/**.md" },
