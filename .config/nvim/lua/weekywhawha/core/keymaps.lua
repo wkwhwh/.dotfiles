@@ -62,6 +62,7 @@ keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>")  -- find string in
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")    -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")  -- list available help tags
 keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>")     -- resume previous telescope search
+keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>") -- telescope undo
 
 -- git
 keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")                -- open git status window
@@ -74,3 +75,6 @@ keymap.set("n", "<leader>fe", "<cmd>Oil<CR>")
 
 -- restart lsp server
 keymap.set("n", "<leader>rl", "<cmd>LspRestart<CR>") -- mapping to restart lsp if necessary
+
+-- aerial
+keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>') -- aerial toggle

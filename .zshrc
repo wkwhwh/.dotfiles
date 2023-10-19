@@ -67,8 +67,15 @@ alias dtf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 # tmux plugins path
 export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
+# suppercollider path
+export PATH=/Applications/SuperCollider.app/Contents/MacOS:$PATH
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/zsh-plugins/.p10k.zsh
 
 export GPG_TTY=\$(tty)
 export HOMEBREW_NO_ANALYTICS=1
+
+
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+

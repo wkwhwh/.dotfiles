@@ -20,6 +20,14 @@ luasnip.config.set_config({
   delete_check_events = "TextChanged,InsertEnter",
 })
 
+cmp.event:on("menu_opened", function()
+  vim.b.copilot_suggestion_hidden = true
+end)
+
+cmp.event:on("menu_closed", function()
+  vim.b.copilot_suggestion_hidden = false
+end)
+
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.pumheight = 10
 
@@ -68,6 +76,8 @@ cmp.setup({
           behavior = cmp.ConfirmBehavior.Replace, -- e.g. console.log -> console.inlog -> console.info
           select = true,                          -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         })
+      elseif require("copilot.suggestion").is_visible() then
+        require("copilot.suggestion").accept()
       elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
@@ -79,10 +89,11 @@ cmp.setup({
   }),
   -- sources for autocompletion
   sources = cmp.config.sources({
-    { name = "nvim_lsp" },                     -- lsp
-    { name = "luasnip" },                      -- snippets
+    { name = "nvim_lsp" },                    -- lsp
+    { name = "luasnip" },                     -- snippets
     { name = "buffer",  keyword_length = 5, }, -- text within current buffer
-    { name = "path" },                         -- file system paths
+    { name = "path" },                        -- file system paths
+    { name = "tidal" },                       -- tidalcycles
   }),
   window = {
     completion = cmp.config.window.bordered({

@@ -37,9 +37,13 @@ return lazy.setup({
 	"nvim-lualine/lualine.nvim",
 
 	-- fuzzy finding w/ telescope
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },  -- dependency for better sorting performance
-	{ "nvim-telescope/telescope.nvim",            branch = "0.1.x" }, -- fuzzy finder
-	"nvim-telescope/telescope-ui-select.nvim",                       -- ui for telescope
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- dependency for better sorting performance
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		dependencies = { "nvim-lua/plenary.nvim", "debugloop/telescope-undo.nvim", }
+	},
+	"nvim-telescope/telescope-ui-select.nvim", -- ui for telescope
 
 	-- netwr-like file browser
 	{
@@ -47,6 +51,15 @@ return lazy.setup({
 		opts = {},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+	{
+		'stevearc/aerial.nvim',
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons"
+		},
 	},
 
 	-- autocompletion
@@ -149,6 +162,12 @@ return lazy.setup({
 		},
 	},
 	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		build = ":Copilot auth",
+		event = "InsertEnter",
+	},
+	{
 		"epwalsh/obsidian.nvim",
 		lazy = true,
 		event = { "BufReadPre " .. vim.fn.expand "~" .. "/Documents/Obsidian/Main/**.md" },
@@ -158,4 +177,5 @@ return lazy.setup({
 			"nvim-telescope/telescope.nvim",
 		},
 	},
+	"tidalcycles/vim-tidal",
 })
