@@ -5,6 +5,7 @@ end
 
 kanagawa.setup({
   compile = true,
+  transparent = true,
   dimInactive = false,
   colors = {
     theme = {

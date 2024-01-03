@@ -34,8 +34,7 @@ treesitter.setup({
     "rust"
   },
   context_commentstring = {
-    enable = true,
-    config = {
+    languages = {
       javascript = {
         __default = '// %s',
         jsx_element = '{/* %s */}',

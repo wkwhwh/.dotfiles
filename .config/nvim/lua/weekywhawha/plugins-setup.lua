@@ -99,12 +99,6 @@ return lazy.setup({
 			'JoosepAlviste/nvim-ts-context-commentstring', -- context aware commentstring
 		},
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "BufReadPre",
-		enabled = true,
-		opts = { mode = "cursor" },
-	},
 
 	-- auto closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
@@ -128,39 +122,6 @@ return lazy.setup({
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-	-- search labels navigation
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {},
-		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					-- default options: exact mode, multi window, all directions, with a backdrop
-					require("flash").jump()
-				end,
-				desc = "Flash",
-			},
-			{
-				"S",
-				mode = { "n", "o", "x" },
-				function()
-					require("flash").treesitter()
-				end,
-				desc = "Flash Treesitter",
-			},
-			{
-				"r",
-				mode = "o",
-				function()
-					require("flash").remote()
-				end,
-				desc = "Remote Flash",
-			},
-		},
-	},
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
@@ -178,4 +139,9 @@ return lazy.setup({
 		},
 	},
 	"tidalcycles/vim-tidal",
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {}
+	}
 })

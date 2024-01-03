@@ -14,11 +14,11 @@ Tab.setup()
 
 return {
   font = wezterm.font_with_fallback({
-    "Iosevka Nerd Font Mono",
+    "Iosevka NFM",
     "Hack Nerd Font Mono",
   }),
   harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-  font_size = 13,
+  font_size = 14,
   underline_thickness = "200%",
   underline_position = "-3pt",
   enable_wayland = false,
@@ -29,7 +29,7 @@ return {
   window_decorations = "RESIZE",
   window_close_confirmation = "NeverPrompt",
   window_padding = {
-    left = 0,
+    left = 4,
     right = 0,
     top = 0,
     bottom = 0,
@@ -43,7 +43,8 @@ return {
   enable_scroll_bar = false,
   use_fancy_tab_bar = false,
   show_new_tab_button_in_tab_bar = false,
-  window_background_opacity = 1,
+  window_background_opacity = 0.8,
+  macos_window_background_blur = 20,
   tab_max_width = 50,
   hide_tab_bar_if_only_one_tab = true,
   disable_default_key_bindings = false,

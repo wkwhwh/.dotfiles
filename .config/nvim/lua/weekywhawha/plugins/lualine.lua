@@ -4,6 +4,10 @@ if not setup then
 end
 
 lualine.setup {
+	options = {
+    component_separators = '',
+    section_separators = { left = '', right = '' },
+	},
 	tabline = {
 		lualine_a = { 'buffers' },
 		lualine_b = {},

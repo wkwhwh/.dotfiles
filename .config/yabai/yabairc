@@ -1,12 +1,8 @@
 # default layout (can be bsp, stack or float)
 yabai -m config layout stack
 
-# padding set to 6px
-yabai -m config top_padding 6
-yabai -m config bottom_padding 6
-yabai -m config left_padding 6
-yabai -m config right_padding 6
-yabai -m config window_gap 6
+# set window gap to 2px
+yabai -m config window_gap 2
 
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
@@ -18,6 +14,7 @@ yabai -m rule --add app="^TotalMix FX$" manage=off
 yabai -m rule --add app="^Shadow PC$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Max$" manage=off
 
 # yabai indicator signals
 yabai -m signal --add event=mission_control_exit action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
