@@ -14,15 +14,10 @@ keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>")
 keymap.set("n", "<leader>bD", "<cmd>bdelete!<cr>")
 keymap.set("n", "<leader>bo", "<cmd>%bd <bar> e# <bar> bd #<cr>")
 
+keymap.set({ "n", "i", "v", "x" }, "<MiddleMouse>", "<Nop>", { noremap = true, silent = true })
+
 -- clear search highlights
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
-
--- clear search, diff update and redraw
-keymap.set(
-  "n",
-  "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>"
-)
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
@@ -55,26 +50,3 @@ keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- replace word on cursor global
 keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- telescope
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>")  -- find string in current working directory as you type
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")    -- list open buffers in current neovim instance
-keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")  -- list available help tags
-keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>")     -- resume previous telescope search
-keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>") -- telescope undo
-
--- git
-keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")                -- open git status window
-keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<cr>")          -- open git diff window
-keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory %<cr>") -- open git file history window for file
-keymap.set("n", "<leader>dH", "<cmd>DiffviewFileHistory<cr>")   -- open git file history window for branch
-
--- file explorer
-keymap.set("n", "<leader>fe", "<cmd>Oil<CR>")
-
--- restart lsp server
-keymap.set("n", "<leader>rl", "<cmd>LspRestart<CR>") -- mapping to restart lsp if necessary
-
--- aerial
-keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>') -- aerial toggle
