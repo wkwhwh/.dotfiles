@@ -1,16 +1,11 @@
 local wezterm = require("wezterm")
-local Tab = require("tab")
 local Theme = require("theme")
 local Keys = require("keys")
 
-local mux = wezterm.mux
-
 wezterm.on("gui-startup", function(cmd)
-  local window = mux.spawn_window(cmd or {})
+  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
-
-Tab.setup()
 
 return {
   font = wezterm.font_with_fallback({
@@ -29,7 +24,7 @@ return {
   window_decorations = "RESIZE",
   window_close_confirmation = "NeverPrompt",
   window_padding = {
-    left = 4,
+    left = 0,
     right = 0,
     top = 0,
     bottom = 0,
@@ -47,10 +42,18 @@ return {
   macos_window_background_blur = 20,
   tab_max_width = 50,
   hide_tab_bar_if_only_one_tab = true,
+  tab_bar_at_bottom = true,
   disable_default_key_bindings = false,
   force_reverse_video_cursor = true,
   colors = Theme.colors,
   keys = Keys,
+  mouse_bindings = {
+    {
+      event = { Down = { streak = 1, button = "Middle" } },
+      mods = "NONE",
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+  },
   hyperlink_rules = {
     {
       regex = "\\b\\w+://[\\w.-]+:[0-9]{2,15}\\S*\\b",
