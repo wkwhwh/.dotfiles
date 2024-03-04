@@ -6,7 +6,7 @@ alt - j : yabai -m window --focus south || yabai -m window --focus stack.prev
 alt - k : yabai -m window --focus north || yabai -m window --focus stack.next
 alt - h : yabai -m window --focus west  || yabai -m window --focus stack.first
 alt - l : yabai -m window --focus east  || yabai -m window --focus stack.last
-alt - f : yabai -m window --focus mouse
+alt - m : yabai -m window --focus mouse
 
 # rotate layout clockwise
 shift + alt - r: yabai -m space --rotate 270
@@ -54,10 +54,11 @@ ctrl + alt - q : yabai --stop-service
 ctrl + alt - s : yabai --start-service
 ctrl + alt - r : yabai --restart-service
 
-ctrl + shift - w : open -a "WezTerm"
-ctrl + shift - s : open -a "safari"
-ctrl + shift - m : open -a "music"
-ctrl + shift - k : open -a "kodi"
-ctrl + shift - d : open -a "discord"
-ctrl + shift - b : open -a "bear"
+rcmd - w : open -a "WezTerm"
+rcmd - s : open -a "safari"
+rcmd - m : open -a "music"
+rcmd - d : open -a "discord"
+rcmd - b : open -a "bear"
+rcmd - c : open -a "chrome"
+rcmd - k : open -a "slack"
 
