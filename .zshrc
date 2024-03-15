@@ -40,6 +40,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# nvmrc
 autoload -U add-zsh-hook
 load-nvmrc() {
     local node_version="$(nvm version)"
@@ -60,14 +61,31 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+
+# python venv
+python_venv() {
+  MYVENV=./.venv
+  # when you cd into a folder that contains $MYVENV
+  [[ -d $MYVENV ]] && source $MYVENV/bin/activate > /dev/null 2>&1
+  # when you cd into a folder that doesn't
+  [[ ! -d $MYVENV ]] && deactivate > /dev/null 2>&1
+}
+add-zsh-hook chpwd python_venv
+
+python_venv
+
+# python aliases
+alias python=python3
+alias pip=pip3
+alias createvenv="python3 -m venv .venv"
+alias startvenv="source .venv/bin/activate"
+alias stopvenv="deactivate"
+
+# sesh aliases
+alias T='sesh connect $(sesh list | fzf)'
+
 # Git aliases
 alias dtf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
-# tmux plugins path
-export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
-
-# suppercollider path
-export PATH=/Applications/SuperCollider.app/Contents/MacOS:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/zsh-plugins/.p10k.zsh

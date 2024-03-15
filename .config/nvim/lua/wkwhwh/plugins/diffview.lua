@@ -1,5 +1,10 @@
 return {
   "sindrets/diffview.nvim",
+  keys = {
+    { "<leader>dv", "<cmd>DiffviewOpen<cr>" },
+    { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>" },
+    { "<leader>dH", "<cmd>DiffviewFileHistory<cr>" }
+  },
   config = function()
     -- import comment plugin safely
     local diffview = require("diffview")
@@ -18,15 +23,5 @@ return {
         view = { q = '<Cmd>DiffviewClose<CR>' },
       },
     })
-
-    vim.keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<cr>")          -- open git diff window
-    vim.keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory %<cr>") -- open git file history window for file
-    vim.keymap.set("n", "<leader>dH", "<cmd>DiffviewFileHistory<cr>")   -- open git file history window for branch
   end,
 }
-
-
--- local setup, diffview = pcall(require, "diffview")
--- if not setup then
---   return
--- end
