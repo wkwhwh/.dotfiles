@@ -11,18 +11,10 @@ return {
   },
   config = function()
     local cmp = require("cmp")
-
     local luasnip = require("luasnip")
-
     local lspkind = require("lspkind")
 
-    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
-
-    -- luasnip.config.set_config({
-    --   region_check_events = "CursorHold,InsertLeave",
-    --   delete_check_events = "TextChanged,InsertEnter",
-    -- })
 
     cmp.event:on("menu_opened", function()
       vim.b.copilot_suggestion_hidden = true
@@ -58,8 +50,8 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm({
-              behavior = cmp.ConfirmBehavior.Replace, -- e.g. console.log -> console.inlog -> console.info
-              select = true,                          -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = true,
             })
           elseif require("copilot.suggestion").is_visible() then
             require("copilot.suggestion").accept()
@@ -72,12 +64,11 @@ return {
           end
         end, { "i", "s" }),
       }),
-      -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },                    -- lsp
-        { name = "luasnip" },                     -- snippets
-        { name = "buffer",  keyword_length = 5 }, -- text within current buffer
-        { name = "path" },                        -- file system paths
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer",  keyword_length = 5 },
+        { name = "path" },
       }),
       window = {
         completion = cmp.config.window.bordered({
@@ -90,7 +81,7 @@ return {
         format = lspkind.cmp_format({
           maxwidth = 25,
           ellipsis_char = "...",
-          menu = ({ -- showing type in menu
+          menu = ({
             nvim_lsp = "[LSP]",
             path = "[Path]",
             buffer = "[Buffer]",

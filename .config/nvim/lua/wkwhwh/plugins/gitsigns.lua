@@ -1,14 +1,16 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPre", "BufNewFile" },
-  keys = {
-    { "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>" },
-    { "<leader>gb", "<cmd>Gitsigns blame_line<CR>" },
-    { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>" },
-    { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>" },
-    { "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>" },
-    { "]g",         "<cmd>Gitsigns next_hunk<CR>" },
-    { "[g",         "<cmd>Gitsigns prev_hunk<CR>" },
-  },
-  config = true
+  config = function()
+    local gitsigns = require("gitsigns")
+    gitsigns.setup {}
+
+    vim.keymap.set("n", "<leader>hd", "<cmd>Gitsigns preview_hunk<CR>")
+    vim.keymap.set("n", "<leader>hb", "<cmd>Gitsigns blame_line<CR>")
+    vim.keymap.set("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>")
+    vim.keymap.set("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
+    vim.keymap.set("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>")
+    vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<CR>")
+    vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<CR>")
+  end,
 }

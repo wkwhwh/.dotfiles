@@ -1,20 +1,9 @@
 return {
   "sindrets/diffview.nvim",
-  keys = {
-    { "<leader>dv", "<cmd>DiffviewOpen<cr>" },
-    { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>" },
-    { "<leader>dH", "<cmd>DiffviewFileHistory<cr>" }
-  },
   config = function()
-    -- import comment plugin safely
     local diffview = require("diffview")
-
-    local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
-
-    -- enable diffview
     diffview.setup({
       merge_tool = {
-        -- Config for conflicted files in diff views during a merge or rebase.
         layout = "diff3_mixed",
       },
       keymaps = {
@@ -23,5 +12,9 @@ return {
         view = { q = '<Cmd>DiffviewClose<CR>' },
       },
     })
+
+    vim.keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<cr>")
+    vim.keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory %<cr>")
+    vim.keymap.set("n", "<leader>dH", "<cmd>DiffviewFileHistory<cr>")
   end,
 }

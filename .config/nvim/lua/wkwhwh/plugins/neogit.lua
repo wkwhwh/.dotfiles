@@ -5,9 +5,6 @@ return {
     "sindrets/diffview.nvim",        -- optional - Diff integration
     "nvim-telescope/telescope.nvim", -- optional
   },
-  keys = {
-    { "<leader>gg", "<cmd>Neogit<cr>" },
-  },
   config = function()
     local neogit = require("neogit")
     neogit.setup({
@@ -19,5 +16,7 @@ return {
         item = { "", "" },
       },
     })
+
+    vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")
   end,
 }

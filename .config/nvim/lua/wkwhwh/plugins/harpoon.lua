@@ -23,15 +23,15 @@ return {
       }):find()
     end
 
-    vim.keymap.set("n", "<leader>hh", function() toggle_telescope(harpoon:list()) end)
-    vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end)
-    vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
-    vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
-    vim.keymap.set("n", "<leader>hd", function() harpoon:list():remove() end)
-    vim.keymap.set("n", "<leader>hD", function() harpoon:list():clear() end)
-    vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end)
-    vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end)
-    vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end)
-    vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end)
+    vim.keymap.set("n", "<leader>M", function() toggle_telescope(harpoon:list()) end)
+    vim.keymap.set("n", "<leader>m", function() harpoon:list():append() end)
+    vim.keymap.set("n", "<leader>mp", function() harpoon:list():prev({ ui_nav_wrap = true }) end)
+    vim.keymap.set("n", "<leader>mn", function() harpoon:list():next({ ui_nav_wrap = true }) end)
+    vim.keymap.set("n", "<leader>md", function() harpoon:list():remove() end)
+    vim.keymap.set("n", "<leader>mD", function() harpoon:list():clear() end)
+    vim.keymap.set("n", "<leader>m1", function() harpoon:list():select(1) end)
+    vim.keymap.set("n", "<leader>m2", function() harpoon:list():select(2) end)
+    vim.keymap.set("n", "<leader>m3", function() harpoon:list():select(3) end)
+    vim.keymap.set("n", "<leader>m4", function() harpoon:list():select(4) end)
   end
 }
