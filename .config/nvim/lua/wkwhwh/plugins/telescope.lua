@@ -32,5 +32,6 @@ return {
 		vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 		vim.keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>")   -- resume previous telescope search
 		vim.keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>")      -- telescope undo
+		vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>") -- find git files
 	end,
 }
