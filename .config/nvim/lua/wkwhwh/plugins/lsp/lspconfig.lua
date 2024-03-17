@@ -49,8 +49,8 @@ return {
           go({ severity = severity })
         end
       end
-      vim.keymap.set("n", "[d", diagnostic_goto(false), opts)  -- jump to previous diagnostic in buffer
-      vim.keymap.set("n", "]d", diagnostic_goto(true), opts) -- jump to next diagnostic in buffer
+      vim.keymap.set("n", "[d", diagnostic_goto(false), opts) -- jump to previous diagnostic in buffer
+      vim.keymap.set("n", "]d", diagnostic_goto(true), opts)  -- jump to next diagnostic in buffer
       vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"))
       vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"))
       vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"))
