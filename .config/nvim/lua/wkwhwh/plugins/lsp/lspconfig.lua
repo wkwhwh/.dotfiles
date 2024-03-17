@@ -38,13 +38,26 @@ return {
           },
         })
       end, opts)
-      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)                       -- smart rename
-      vim.keymap.set("n", "<leader>vD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-      vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)                -- show diagnostics for line
-      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)                         -- jump to previous diagnostic in buffer
-      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)                         -- jump to next diagnostic in buffer
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)                                 -- show documentation for what is under cursor
-      vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)                    -- mapping to restart lsp if necessary
+      vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)                       -- smart rename
+      vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+      vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)                -- show diagnostics for line
+
+      local diagnostic_goto = function(next, severity)
+        local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+        severity = severity and vim.diagnostic.severity[severity] or nil
+        return function()
+          go({ severity = severity })
+        end
+      end
+      vim.keymap.set("n", "[d", diagnostic_goto(false), opts)  -- jump to previous diagnostic in buffer
+      vim.keymap.set("n", "]d", diagnostic_goto(true), opts) -- jump to next diagnostic in buffer
+      vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"))
+      vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"))
+      vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"))
+      vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"))
+
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)              -- show documentation for what is under cursor
+      vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts) -- mapping to restart lsp if necessary
     end
 
     local capabilities = cmp_nvim_lsp.default_capabilities()

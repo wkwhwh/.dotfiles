@@ -24,7 +24,7 @@ return {
     end
 
     vim.keymap.set("n", "<leader>fm", function() toggle_telescope(harpoon:list()) end)
-    vim.keymap.set("n", "<leader>m", function() harpoon:list():append() end)
+    vim.keymap.set("n", "<leader>ma", function() harpoon:list():append() end)
     vim.keymap.set("n", "<leader>mp", function() harpoon:list():prev({ ui_nav_wrap = true }) end)
     vim.keymap.set("n", "<leader>mn", function() harpoon:list():next({ ui_nav_wrap = true }) end)
     vim.keymap.set("n", "<leader>md", function() harpoon:list():remove() end)
