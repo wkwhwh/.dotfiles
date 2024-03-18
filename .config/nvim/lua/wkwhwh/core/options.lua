@@ -31,7 +31,6 @@ vim.opt.cursorline = true -- highlight the current cursor line
 vim.opt.termguicolors = true
 vim.opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 
-
 -- backspace
 vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
