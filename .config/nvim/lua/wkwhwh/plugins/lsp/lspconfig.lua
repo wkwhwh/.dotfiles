@@ -51,13 +51,26 @@ return {
       end
       vim.keymap.set("n", "[d", diagnostic_goto(false), opts) -- jump to previous diagnostic in buffer
       vim.keymap.set("n", "]d", diagnostic_goto(true), opts)  -- jump to next diagnostic in buffer
-      vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"))
-      vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"))
-      vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"))
-      vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"))
+      vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), opts)
+      vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), opts)
+      vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), opts)
+      vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), opts)
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)              -- show documentation for what is under cursor
-      vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+      vim.keymap.set("n", "<leader>rd", "<cmd>LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+      vim.g["diagnostics_active"] = true
+      local toggle_diagnostic = function()
+        if vim.g.diagnostics_active then
+          vim.g.diagnostics_active = false
+          vim.diagnostic.disable()
+        else
+          vim.g.diagnostics_active = true
+          vim.diagnostic.enable()
+        end
+      end
+
+      vim.keymap.set("n", "<leader>td", toggle_diagnostic, opts)
     end
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -132,7 +145,7 @@ return {
       },
       underline = true,
       signs = true,
-      update_in_insert = false,
+      update_in_insert = true,
       severity_sort = true,
       virtual_text = {
         prefix = "•",

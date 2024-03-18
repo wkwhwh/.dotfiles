@@ -41,6 +41,3 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- delete to void register
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-
--- replace word on cursor global
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
