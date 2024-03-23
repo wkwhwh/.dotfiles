@@ -81,11 +81,11 @@ alias createvenv="python3 -m venv .venv"
 alias startvenv="source .venv/bin/activate"
 alias stopvenv="deactivate"
 
-# sesh aliases
-alias T='sesh connect $(sesh list | fzf)'
-
 # Git aliases
 alias dtf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+
+# sesh aliases
+alias T='sesh connect $(fd -d 2 -t d -E .Trash . ~/Code | fzf)'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/zsh-plugins/.p10k.zsh

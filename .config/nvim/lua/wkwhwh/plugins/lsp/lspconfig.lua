@@ -120,6 +120,7 @@ return {
       sh = { shellcheck, shfmt },
       terraform = { terraform },
       rego = { opa },
+      svelte = { prettier, eslint },
     }
 
     lspconfig["efm"].setup({
@@ -206,6 +207,11 @@ return {
     })
 
     lspconfig["pyright"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    lspconfig["rust_analyzer"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
