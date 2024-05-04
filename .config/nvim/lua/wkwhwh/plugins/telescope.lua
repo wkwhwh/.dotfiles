@@ -10,6 +10,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+		local trouble = require("trouble.providers.telescope")
 		telescope.setup({
 			defaults = {
 				path_display = { "truncate" },
@@ -19,6 +20,7 @@ return {
 						["<C-p>"] = actions.cycle_history_prev,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
+						["<C-t>"] = trouble.open_with_trouble,
 					},
 				},
 			},
@@ -31,7 +33,8 @@ return {
 		vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")  -- list open buffers in current neovim instance
 		vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 		vim.keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>")   -- resume previous telescope search
-		vim.keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>")      -- telescope undo
+		vim.keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>")     -- telescope undo
 		vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>") -- find git files
+		vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>")    -- find git files
 	end,
 }

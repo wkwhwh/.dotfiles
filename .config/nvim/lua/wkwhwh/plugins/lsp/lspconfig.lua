@@ -38,9 +38,8 @@ return {
           },
         })
       end, opts)
-      vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)                       -- smart rename
-      vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-      vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)                -- show diagnostics for line
+      vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)        -- smart rename
+      vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
       local diagnostic_goto = function(next, severity)
         local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev

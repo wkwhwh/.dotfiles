@@ -55,11 +55,11 @@ ctrl + alt - s : yabai --start-service
 ctrl + alt - r : yabai --restart-service
 
 rcmd - w : open -a "wezterm"
-rcmd - s : open -a "safari"
-rcmd - m : open -a "music"
+rcmd - r : open -a "roon"
 rcmd - d : open -a "discord"
 rcmd - b : open -a "bear"
-rcmd - c : open -a "chrome"
 rcmd - l : open -a "slack"
 rcmd - k : open -a "kodi"
+rcmd - f : open -a "finder"
+rcmd - s : open -a "safari"
 

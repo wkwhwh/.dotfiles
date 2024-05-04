@@ -24,7 +24,9 @@ vim.opt.smartcase = true  -- if you include mixed case in your search, assumes y
 -- cursor line
 vim.opt.cursorline = true -- highlight the current cursor line
 
--- appearance
+-- responsivness
+vim.opt.updatetime = 250 -- decrease updatetime
+vim.opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 
 -- turn on termguicolors for nightfly colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
@@ -35,9 +37,7 @@ vim.opt.background = "dark" -- colorschemes that can be light or dark will be ma
 vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- split windows
-vim.opt.splitright = true              -- split vertical window to the right
-vim.opt.splitbelow = true              -- split horizontal window to the bottom
+vim.opt.splitright = true     -- split vertical window to the right
+vim.opt.splitbelow = true     -- split horizontal window to the bottom
 
-vim.opt.iskeyword:append("-")          -- consider string-string as whole word
-
-vim.opt.shortmess:append({ I = true }) -- disable startup screen
+vim.opt.iskeyword:append("-") -- consider string-string as whole word

@@ -10,7 +10,8 @@ vim.keymap.set("n", "[b", "<cmd>bprevious<cr>")
 vim.keymap.set("n", "]b", "<cmd>bnext<cr>")
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>")
 vim.keymap.set("n", "<leader>bD", "<cmd>bdelete!<cr>")
-vim.keymap.set("n", "<leader>bo", "<cmd>%bd <bar> e# <bar> bd #<cr>")
+vim.keymap.set("n", "<leader>bo", "<cmd>%bd | e# | bd#<cr>")
+vim.keymap.set("n", "<leader>bc", "<cmd>%bd | Alpha | bd#<cr>")
 
 vim.keymap.set({ "n", "i", "v", "x" }, "<MiddleMouse>", "<Nop>", { noremap = true, silent = true })
 

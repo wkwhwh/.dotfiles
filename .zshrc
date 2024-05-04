@@ -100,3 +100,4 @@ if [ -f '/Users/marcdavid/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/marcd
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/marcdavid/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/marcdavid/google-cloud-sdk/completion.zsh.inc'; fi
 
+source <(kubectl completion zsh)

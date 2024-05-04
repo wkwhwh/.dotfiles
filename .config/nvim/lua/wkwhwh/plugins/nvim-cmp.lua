@@ -16,14 +16,6 @@ return {
 
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    cmp.event:on("menu_opened", function()
-      vim.b.copilot_suggestion_hidden = true
-    end)
-
-    cmp.event:on("menu_closed", function()
-      vim.b.copilot_suggestion_hidden = false
-    end)
-
     vim.opt.pumheight = 10
 
     local has_words_before = function()
@@ -53,8 +45,6 @@ return {
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
             })
-          elseif require("copilot.suggestion").is_visible() then
-            require("copilot.suggestion").accept()
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
