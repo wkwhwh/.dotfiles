@@ -4,6 +4,9 @@ This repository contains my personal dotfiles, which include configurations for 
 
 Feel free to explore and use any parts of these dotfiles that are relevant to your needs. You can find specific configurations and instructions for each tool below.
 
+I am no longer using yabai and skhd, currently using [karabiner-elements](https://karabiner-elements.pqrs.org/). 
+Check my karabiner config [here](https://github.com/wkwhwh/karabiner-config).
+
 ## Table of Contents
 
 -   [tmux](#tmux)

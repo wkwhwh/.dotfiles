@@ -1,6 +1,9 @@
 -- set leader key to space
 vim.g.mapleader = " "
 
+-- remap backtick to single quote
+vim.keymap.set("n", "`", "'", { noremap = true })
+
 -- better up/down
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
