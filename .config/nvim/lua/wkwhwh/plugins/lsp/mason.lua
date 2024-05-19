@@ -23,7 +23,6 @@ return {
         "svelte",
         "lua_ls",
         "graphql",
-        "emmet_ls",
         "prismals",
         "pyright",
         "rust_analyzer",

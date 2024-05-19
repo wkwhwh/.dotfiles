@@ -84,9 +84,6 @@ alias stopvenv="deactivate"
 # Git aliases
 alias dtf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
-# sesh aliases
-alias T='sesh connect $(fd -d 2 -t d -E .Trash . ~/Code | fzf)'
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/zsh-plugins/.p10k.zsh
 
