@@ -6,7 +6,6 @@ return {
       relculright = true,
       bt_ignore = { "nofile" },
       segments = {
-        { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
         {
           sign = { namespace = { "diagnostic" } },
           click = "v:lua.ScSa",

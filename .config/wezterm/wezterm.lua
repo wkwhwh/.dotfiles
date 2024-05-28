@@ -21,10 +21,9 @@ return {
   warn_about_missing_glyphs = false,
   show_update_window = false,
   check_for_updates = false,
-  window_decorations = "RESIZE",
   window_close_confirmation = "NeverPrompt",
   window_padding = {
-    left = 0,
+    left = 5,
     right = 0,
     top = 0,
     bottom = 0,
@@ -47,13 +46,6 @@ return {
   force_reverse_video_cursor = true,
   colors = Theme.colors,
   keys = Keys,
-  mouse_bindings = {
-    {
-      event = { Down = { streak = 1, button = "Middle" } },
-      mods = "NONE",
-      action = wezterm.action.DisableDefaultAssignment,
-    },
-  },
   hyperlink_rules = {
     {
       regex = "\\b\\w+://[\\w.-]+:[0-9]{2,15}\\S*\\b",
