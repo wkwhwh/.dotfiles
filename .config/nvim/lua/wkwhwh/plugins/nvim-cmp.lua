@@ -42,7 +42,7 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm({
-              behavior = cmp.ConfirmBehavior.Replace,
+              behavior = cmp.ConfirmBehavior.Insert,
               select = true,
             })
           elseif luasnip.expand_or_locally_jumpable() then

@@ -10,7 +10,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
-		local trouble = require("trouble.providers.telescope")
+		local open_with_trouble = require("trouble.sources.telescope").open
 		telescope.setup({
 			defaults = {
 				path_display = { "truncate" },
@@ -20,8 +20,9 @@ return {
 						["<C-p>"] = actions.cycle_history_prev,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
-						["<C-t>"] = trouble.open_with_trouble,
+						["<C-t>"] = open_with_trouble,
 					},
+					n = { ["<C-t>"] = open_with_trouble },
 				},
 			},
 		})
