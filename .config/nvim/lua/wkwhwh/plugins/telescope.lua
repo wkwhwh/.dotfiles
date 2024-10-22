@@ -20,9 +20,8 @@ return {
 						["<C-p>"] = actions.cycle_history_prev,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
-						["<C-t>"] = open_with_trouble,
+						["<C-q>"] = actions.send_selected_to_qflist
 					},
-					n = { ["<C-t>"] = open_with_trouble },
 				},
 			},
 		})

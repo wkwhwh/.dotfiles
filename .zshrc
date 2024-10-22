@@ -61,7 +61,6 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-
 # python venv
 python_venv() {
   MYVENV=./.venv
@@ -84,17 +83,14 @@ alias stopvenv="deactivate"
 # Git aliases
 alias dtf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
+# Kitty
+alias icat="kitten icat"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/zsh-plugins/.p10k.zsh
 
 export GPG_TTY=\$(tty)
 export HOMEBREW_NO_ANALYTICS=1
 
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/marcdavid/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/marcdavid/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/marcdavid/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/marcdavid/google-cloud-sdk/completion.zsh.inc'; fi
-
 source <(kubectl completion zsh)
+

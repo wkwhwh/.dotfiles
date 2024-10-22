@@ -50,3 +50,6 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "0"
 vim.opt.foldnestmax = 3
+
+-- tabline
+vim.opt.showtabline = 0
