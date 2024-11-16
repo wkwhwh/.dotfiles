@@ -17,6 +17,9 @@ return {
           return conf
         end,
       },
+      keymaps = {
+        ["q"] = { "actions.close", mode = "n" },
+      }
     })
 
     vim.keymap.set("n", "-", "<cmd>Oil --float<CR>")

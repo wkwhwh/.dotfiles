@@ -22,19 +22,33 @@ return {
 						["<C-j>"] = actions.move_selection_next,
 						["<C-q>"] = actions.send_selected_to_qflist
 					},
+					n = {
+						["q"] = actions.close
+					}
+				},
+			},
+			pickers = {
+				buffers = {
+					initial_mode = 'normal',
+					sort_lastused = true,
+					mappings = {
+						n = {
+							["d"] = actions.delete_buffer,
+						},
+					},
 				},
 			},
 		})
 
 		telescope.load_extension("fzf")
 
-		vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-		vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
-		vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")  -- list open buffers in current neovim instance
-		vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
-		vim.keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>")   -- resume previous telescope search
-		vim.keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>")     -- telescope undo
-		vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>") -- find git files
-		vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>")    -- find git files
+		vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")  -- find files within current working directory, respects .gitignore
+		vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>")   -- find string in current working directory as you type
+		vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+		vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")   -- list available help tags
+		vim.keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>")      -- resume previous telescope search
+		vim.keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>")        -- telescope undo
+		vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>")   -- find git files
+		vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>")       -- find git files
 	end,
 }

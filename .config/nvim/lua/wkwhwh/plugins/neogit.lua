@@ -10,6 +10,7 @@ return {
     neogit.setup({
       console_timeout = 10000,
       disable_hint = true,
+      graph_style = "kitty",
       signs = {
         section = { "", "" },
         item = { "", "" },

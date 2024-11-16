@@ -31,7 +31,6 @@ vim.opt.cursorline = true -- highlight the current cursor line
 vim.opt.updatetime = 250 -- decrease updatetime
 vim.opt.timeoutlen = 500 -- time to wait for a mapped sequence to complete (in milliseconds)
 
--- turn on termguicolors for nightfly colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 vim.opt.termguicolors = true
 vim.opt.background = "dark" -- colorschemes that can be light or dark will be made dark
@@ -49,7 +48,6 @@ vim.opt.iskeyword:append("-") -- consider string-string as whole word
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "0"
-vim.opt.foldnestmax = 3
 
 -- tabline
 vim.opt.showtabline = 0

@@ -14,7 +14,7 @@ return {
 					{ "diagnostics", symbols = { error = " ", warn = " ", info = " ", hint = " " } }
 				},
 				lualine_c = {
-					{ 'filename', path = 4 },
+					{ "filename", path = 4 },
 				},
 				lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_y = { "progress" },

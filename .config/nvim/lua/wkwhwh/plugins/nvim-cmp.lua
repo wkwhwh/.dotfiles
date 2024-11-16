@@ -2,9 +2,15 @@ return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-buffer",           -- source for text in buffer
-    "hrsh7th/cmp-path",             -- source for file system paths
-    "L3MON4D3/LuaSnip",             -- snippet engine
+    "hrsh7th/cmp-buffer", -- source for text in buffer
+    "hrsh7th/cmp-path",   -- source for file system paths
+    {
+      "L3MON4D3/LuaSnip",
+      -- follow latest release.
+      version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+      -- install jsregexp (optional!).
+      build = "make install_jsregexp"
+    },                              -- snippet engine
     "saadparwaiz1/cmp_luasnip",     -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim",         -- vs-code like pictograms
@@ -15,6 +21,7 @@ return {
     local lspkind = require("lspkind")
 
     require("luasnip.loaders.from_vscode").lazy_load()
+    luasnip.add_snippets("supercollider", require("scnvim/utils").get_snippets())
 
     vim.opt.pumheight = 10
 
