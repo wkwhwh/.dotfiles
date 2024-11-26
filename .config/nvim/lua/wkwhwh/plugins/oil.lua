@@ -19,11 +19,10 @@ return {
       },
       keymaps = {
         ["q"] = { "actions.close", mode = "n" },
+        ["K"] = "<cmd>MacOSQuicklook<cr>",
       }
     })
 
     vim.keymap.set("n", "-", "<cmd>Oil --float<CR>")
   end,
-
-
 }

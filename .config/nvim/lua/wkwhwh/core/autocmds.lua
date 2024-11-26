@@ -3,10 +3,21 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "set filetype=html",
 })
 
--- vim.api.nvim_create_autocmd("InsertEnter", {
---   pattern = "*.scd, *.sc, *.sc_help, *.quark",
---   callback = function()
---     require("luasnip").add_snippets("supercollider", require("scnvim/utils").get_snippets())
---   end,
---   once = true,
--- })
+vim.api.nvim_create_user_command("MacOSQuicklook", function()
+  local oil = require("oil")
+  local entry = oil.get_cursor_entry()
+  if entry then
+    vim.system({
+      "open",
+      "-a",
+      "QLManage",
+      "--args",
+      "-p",
+      oil.get_current_dir() .. entry.name
+    }, {
+      detach = true
+    })
+  else
+    print("Can only do quicklook in Oil")
+  end
+end, {})
