@@ -1,7 +1,7 @@
 return {
   {
     "rebelot/kanagawa.nvim",
-    priority = 1000, -- make sure to load this before all the other start plugins
+    priority = 1000,
     config = function()
       local kanagawa = require("kanagawa")
       kanagawa.setup({
@@ -18,22 +18,29 @@ return {
         overrides = function(colors)
           local theme = colors.theme
           return {
-            TelescopeTitle = { fg = theme.ui.special, bold = true },
-            TelescopePromptBorder = { fg = theme.ui.bg_p2, bg = "none" },
-            TelescopeResultsBorder = { fg = theme.ui.bg_p2, bg = "none" },
-            TelescopePreviewBorder = { fg = theme.ui.bg_p2, bg = "none" },
+            FzfLuaTitle = { fg = theme.ui.special, bold = true },
+            FzfLuaBorder = { fg = theme.ui.bg_p2, bg = "none" },
+            FzfLuaFzfBorder = { fg = theme.ui.bg_p2, bg = "none" },
+            FzfLuaPreviewBorder = { fg = theme.ui.bg_p2, bg = "none" },
+            FzfLuaHelpBorder = { fg = theme.ui.bg_p2, bg = "none" },
             NormalFloat = { bg = "none" },
             FloatTitle = { bg = "none" },
-            FloatBorder = { bg = "none" },
-            Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend },
-            PmenuSel = { fg = "none", bg = theme.ui.bg_p2 },
-            PmenuSbar = { bg = theme.ui.bg_m1 },
-            PmenuThumb = { bg = theme.ui.bg_p2 },
+            FloatBorder = { fg = theme.ui.bg_p2, bg = "none" },
+            BlinkCmpMenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+            BlinkCmpMenuBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p1 },
+            BlinkCmpMenuSelection = { bg = theme.ui.bg_search },
+            BlinkCmpScrollBarThumb = { bg = theme.ui.bg_p2 },
+            BlinkCmpScrollBarGutter = { bg = theme.ui.bg_m1 },
+            BlinkCmpKind = { fg = theme.ui.special },
+            BlinkCmpDoc = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+            BlinkCmpDocBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p1 },
+            BlinkCmpDocCursorLine = { bg = theme.ui.bg_search },
+            BlinkCmpSignatureHelp = { bg = "none" },
+            BlinkCmpSignatureHelpBorder = { fg = theme.ui.bg_p2, bg = "none" },
           }
         end,
       })
 
-      -- load the colorscheme here
       vim.cmd([[colorscheme kanagawa-dragon]])
     end,
   },

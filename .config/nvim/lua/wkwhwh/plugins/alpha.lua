@@ -28,8 +28,8 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("e", "  > New File", "<cmd>ene<CR>"),
       dashboard.button("-", "  > Toggle file explorer", "<cmd>Oil --float<CR>"),
-      dashboard.button("󱁐 ff", "󰱼  > Find File", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("󱁐 fs", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("󱁐 ff", "󰱼  > Find File", "<cmd>FzfLua files<CR>"),
+      dashboard.button("󱁐 fs", "  > Find Word", "<cmd>FzfLua grep<CR>"),
       dashboard.button("󱁐 sr", "󰁯  > Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
       dashboard.button("q", "  > Quit NVIM", "<cmd>qa<CR>"),
     }

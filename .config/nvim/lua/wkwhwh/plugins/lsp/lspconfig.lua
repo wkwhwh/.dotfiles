@@ -2,12 +2,12 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp",
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
     local lspconfig = require("lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local blink_cmp = require("blink.cmp")
     -- local lsp_format = require("lsp-format")
 
     local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -22,12 +22,12 @@ return {
       -- lsp_format.on_attach(client)
       opts.buffer = bufnr
 
-      vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)       -- show definition, references
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)                   -- go to declaration
-      vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)      -- show lsp definitions
-      vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)  -- show lsp implementations
-      vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)  -- see available code actions, in visual mode will apply to selection
+      vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<CR>", opts)         -- show definition, references
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)                  -- go to declaration
+      vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts)        -- show lsp definitions
+      vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts)    -- show lsp implementations
+      vim.keymap.set("n", "gt", "<cmd>FzfLua lsp_typedefs<CR>", opts)           -- show lsp type definitions
+      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
       vim.keymap.set("n", "<leader>cA", function()
         vim.lsp.buf.code_action({
           context = {
@@ -72,7 +72,7 @@ return {
       vim.keymap.set("n", "<leader>dd", toggle_diagnostic, opts)
     end
 
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+    local capabilities = blink_cmp.get_lsp_capabilities()
 
     vim.diagnostic.config({
       float = {
