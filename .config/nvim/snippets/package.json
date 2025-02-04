@@ -1,0 +1,13 @@
+{
+  "name": "custom-snippets-collection",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "example",
+        "path": "./example.json",
+        "_note": "Copy this template and replace 'example' with language name"
+      }
+    ]
+  },
+  "_documentation": "Add new languages by creating a .json file and adding an entry above"
+}

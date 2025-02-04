@@ -27,7 +27,7 @@ vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "X", '"_X')
 
 -- append line below to current line without moving cursor
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", ":let p=getpos('.')<bar>join<bar>call setpos('.', p)<CR>", { silent = true })
 
 -- half page jump keep cursor in the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

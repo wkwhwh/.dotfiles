@@ -8,7 +8,7 @@ return {
           previewer = false,
           winopts = {
             height = 0.2, -- much smaller height (20% of screen)
-            width = 0.3,  -- much smaller width (30% of screen)
+            width = 0.4,  -- much smaller width (30% of screen)
             col = 0.5,    -- center horizontally (0.5 = 50% from left)
           },
         },

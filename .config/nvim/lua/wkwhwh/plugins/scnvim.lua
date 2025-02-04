@@ -1,7 +1,7 @@
 return {
   'davidgranstrom/scnvim',
   config = function()
-    local scnvim = require 'scnvim'
+    local scnvim = require('scnvim')
     local map = scnvim.map
     local map_expr = scnvim.map_expr
 
@@ -13,8 +13,7 @@ return {
         },
         ['<CR>'] = map('postwin.toggle'),
         ['<M-CR>'] = map('postwin.toggle', 'i'),
-        ['<S-CR>'] = map('postwin.clear', { 'n', 'i' }),
-        ['<C-k>'] = map('signature.show', { 'n', 'i' }),
+        ['<M-L>'] = map('postwin.clear', { 'n', 'i' }),
         ['<F12>'] = map('sclang.hard_stop', { 'n', 'x', 'i' }),
         ['<leader>st'] = map('sclang.start'),
         ['<leader>sk'] = map('sclang.recompile'),
