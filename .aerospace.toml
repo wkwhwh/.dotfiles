@@ -102,17 +102,25 @@ alt-left = 'focus left'
 alt-down = 'focus down'
 alt-up = 'focus up'
 alt-right = 'focus right'
-alt-enter = 'fullscreen'
+alt-m = 'fullscreen'
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-shift-left = 'move left'
 alt-shift-down = 'move down'
 alt-shift-up = 'move up'
 alt-shift-right = 'move right'
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -125,6 +133,8 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-0 = 'workspace 0'
+alt-leftSquareBracket = 'workspace prev'
+alt-rightSquareBracket = 'workspace next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -137,18 +147,17 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 0'
+alt-shift-leftSquareBracket = 'move-node-to-workspace prev'
+alt-shift-rightSquareBracket = 'move-node-to-workspace next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-alt-leftSquareBracket = 'workspace prev'
-alt-rightSquareBracket = 'workspace next'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
-alt-shift-quote = 'mode launch'
+alt-shift-slash = 'mode launch'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -165,18 +174,23 @@ alt-shift-left = ['join-with left', 'mode main']
 alt-shift-down = ['join-with down', 'mode main']
 alt-shift-up = ['join-with up', 'mode main']
 alt-shift-right = ['join-with right', 'mode main']
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
 
+# launch mode
 [mode.launch.binding]
 s = [ 'exec-and-forget open /Applications/Safari.app', 'mode main' ]
 k = [ 'exec-and-forget open /Applications/Kitty.app', 'mode main' ]
 l = [ 'exec-and-forget open /Applications/Slack.app', 'mode main' ]
 d = [ 'exec-and-forget open /Applications/Discord.app', 'mode main' ]
-m = [ 'exec-and-forget open -a /System/Applications/Music.app', 'mode main' ]
-n = [ 'exec-and-forget open /Applications/NetNewsWire.app', 'mode main' ]
 p = [ 'exec-and-forget open /Applications/Proton\ Mail.app', 'mode main' ]
+m = ['exec-and-forget open /System/Applications/Music.app', 'mode main']
 o = [ 'exec-and-forget open /Applications/Obsidian.app', 'mode main' ]
-c = [ 'exec-and-forget open /Applications/Claude.app', 'mode main' ]
 f = [ 'exec-and-forget open /System/Library/CoreServices/Finder.app', 'mode main' ]
+
+esc = 'mode main'
 
 # Event listeners
 
@@ -186,11 +200,33 @@ f = [ 'exec-and-forget open /System/Library/CoreServices/Finder.app', 'mode main
 if.app-id = 'com.apple.Safari'
 run = 'move-node-to-workspace 1'
 
+[[on-window-detected]]
+if.app-id = 'com.vivaldi.Vivaldi'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'move-node-to-workspace 1'
+
 ## Terminal (2)
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace 2'
+
+## Music (8)
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+if.app-id = 'com.qobuz.desktop'
+run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+if.app-id = 'com.audirvana.Audirvana-Studio'
+run = 'move-node-to-workspace 8'
 
 ## Mail (9)
 
@@ -228,5 +264,17 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.aone.keka'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'de.rme-audio.TotalmixFX'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.xbmc.kodi'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.cycling74.Max'
 run = 'layout floating'
 

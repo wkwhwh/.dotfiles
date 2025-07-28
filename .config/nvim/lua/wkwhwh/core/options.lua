@@ -51,3 +51,6 @@ vim.opt.foldcolumn = "0"
 
 -- tabline
 vim.opt.showtabline = 0
+
+-- snacks options
+vim.g.snacks_animate = false

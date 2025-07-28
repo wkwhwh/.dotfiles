@@ -23,17 +23,15 @@ return {
         rust = { "rustfmt", lsp_format = "fallback" },
       },
       format_on_save = {
-        lsp_fallback = true,
-        async = false,
         timeout_ms = 1000,
+        lsp_format = "fallback",
       },
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()
       conform.format({
-        lsp_fallback = true,
-        async = false,
         timeout_ms = 1000,
+        lsp_format = "fallback",
       })
     end, { desc = "Format file or range (in visual mode)" })
   end,

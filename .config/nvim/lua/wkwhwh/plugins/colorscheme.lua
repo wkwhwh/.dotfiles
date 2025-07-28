@@ -18,11 +18,6 @@ return {
         overrides = function(colors)
           local theme = colors.theme
           return {
-            FzfLuaTitle = { fg = theme.ui.special, bold = true },
-            FzfLuaBorder = { fg = theme.ui.bg_p2, bg = "none" },
-            FzfLuaFzfBorder = { fg = theme.ui.bg_p2, bg = "none" },
-            FzfLuaPreviewBorder = { fg = theme.ui.bg_p2, bg = "none" },
-            FzfLuaHelpBorder = { fg = theme.ui.bg_p2, bg = "none" },
             NormalFloat = { bg = "none" },
             FloatTitle = { bg = "none" },
             FloatBorder = { fg = theme.ui.bg_p2, bg = "none" },

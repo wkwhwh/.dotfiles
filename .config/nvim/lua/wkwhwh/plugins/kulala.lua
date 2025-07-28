@@ -1,7 +1,9 @@
 return {
   'mistweaverco/kulala.nvim',
+  ft = { "http", "rest" },
   opts = {
-    show_icons = "",
-    winbar = true,
-  }
+    global_keymaps = true,
+    global_keymaps_prefix = "<leader>R",
+    kulala_keymaps_prefix = "",
+  },
 }

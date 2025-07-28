@@ -6,10 +6,9 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
-    local lspconfig = require("lspconfig")
     local blink_cmp = require("blink.cmp")
-    -- local lsp_format = require("lsp-format")
 
+    -- Configure floating window borders
     local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
@@ -17,63 +16,106 @@ return {
       return orig_util_open_floating_preview(contents, syntax, opts, ...)
     end
 
-    local opts = { noremap = true, silent = true }
-    local on_attach = function(client, bufnr)
-      -- lsp_format.on_attach(client)
-      opts.buffer = bufnr
-
-      vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<CR>", opts)         -- show definition, references
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)                  -- go to declaration
-      vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts)        -- show lsp definitions
-      vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts)    -- show lsp implementations
-      vim.keymap.set("n", "gt", "<cmd>FzfLua lsp_typedefs<CR>", opts)           -- show lsp type definitions
-      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-      vim.keymap.set("n", "<leader>cA", function()
-        vim.lsp.buf.code_action({
-          context = {
-            only = {
-              "source",
-            },
-            diagnostics = {},
-          },
-        })
-      end, opts)
-      vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)        -- smart rename
-      vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-      local diagnostic_goto = function(next, severity)
-        local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-        severity = severity and vim.diagnostic.severity[severity] or nil
-        return function()
-          go({ severity = severity })
+    -- Helper function to check if LSP client supports a method
+    local function has_capability(bufnr, method)
+      if type(method) == "table" then
+        for _, m in ipairs(method) do
+          if has_capability(bufnr, m) then
+            return true
+          end
+        end
+        return false
+      end
+      method = method:find("/") and method or "textDocument/" .. method
+      local clients = vim.lsp.get_clients({ bufnr = bufnr })
+      for _, client in ipairs(clients) do
+        if client.supports_method(method) then
+          return true
         end
       end
-      vim.keymap.set("n", "[d", diagnostic_goto(false), opts) -- jump to previous diagnostic in buffer
-      vim.keymap.set("n", "]d", diagnostic_goto(true), opts)  -- jump to next diagnostic in buffer
-      vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), opts)
-      vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), opts)
-      vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), opts)
-      vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), opts)
-
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)              -- show documentation for what is under cursor
-      vim.keymap.set("n", "<leader>dr", "<cmd>LspRestart<CR>", opts) -- mapping to restart lsp if necessary
-
-      vim.g["diagnostics_active"] = true
-      local toggle_diagnostic = function()
-        if vim.g.diagnostics_active then
-          vim.g.diagnostics_active = false
-          vim.diagnostic.disable()
-        else
-          vim.g.diagnostics_active = true
-          vim.diagnostic.enable()
-        end
-      end
-
-      vim.keymap.set("n", "<leader>dd", toggle_diagnostic, opts)
+      return false
     end
 
+    -- Diagnostic navigation helper
+    local function diagnostic_goto(next, severity)
+      local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+      severity = severity and vim.diagnostic.severity[severity] or nil
+      return function()
+        go({ severity = severity })
+      end
+    end
+
+    -- Centralized keymap setup function
+    local function setup_buffer_keymaps(bufnr)
+      local opts = { noremap = true, silent = true, buffer = bufnr }
+
+      -- LSP keybinds with capability checking
+      local lsp_keybinds = {
+        { "<leader>cl", function() Snacks.picker.lsp_config() end,            desc = "Lsp Info" },
+        { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
+        { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
+        { "gr",         function() Snacks.picker.lsp_references() end,        nowait = true,                       desc = "References" },
+        { "gI",         function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
+        { "gy",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
+        { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
+        { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+        { "K",          vim.lsp.buf.hover,                                    desc = "Hover" },
+        { "gK",         vim.lsp.buf.signature_help,                           desc = "Signature Help",             has = "signatureHelp" },
+        { "<c-k>",      vim.lsp.buf.signature_help,                           desc = "Signature Help",             mode = "i",           has = "signatureHelp" },
+        { "<leader>ca", vim.lsp.buf.code_action,                              desc = "Code Action",                mode = { "n", "v" },  has = "codeAction" },
+        { "<leader>cc", vim.lsp.codelens.run,                                 desc = "Run Codelens",               mode = { "n", "v" },  has = "codeLens" },
+        { "<leader>cC", vim.lsp.codelens.refresh,                             desc = "Refresh & Display Codelens", mode = { "n" },       has = "codeLens" },
+        { "<leader>cr", vim.lsp.buf.rename,                                   desc = "Rename",                     has = "rename" },
+        {
+          "<leader>cA",
+          function()
+            vim.lsp.buf.code_action({
+              context = { only = { "source" }, diagnostics = {} },
+            })
+          end,
+          desc = "Source Action",
+          has = "codeAction"
+        }
+      }
+
+      -- Set LSP keybinds with capability checking
+      for _, keys in ipairs(lsp_keybinds) do
+        local has_cap = not keys.has or has_capability(bufnr, keys.has)
+        if has_cap then
+          local key_opts = vim.tbl_extend("force", opts, {
+            desc = keys.desc,
+            nowait = keys.nowait,
+          })
+          vim.keymap.set(keys.mode or "n", keys[1], keys[2], key_opts)
+        end
+      end
+
+      -- Diagnostic navigation keybinds (always available)
+      local diagnostic_keybinds = {
+        { "[d",         diagnostic_goto(false),          desc = "Prev Diagnostic" },
+        { "]d",         diagnostic_goto(true),           desc = "Next Diagnostic" },
+        { "[e",         diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
+        { "]e",         diagnostic_goto(true, "ERROR"),  desc = "Next Error" },
+        { "[w",         diagnostic_goto(false, "WARN"),  desc = "Prev Warning" },
+        { "]w",         diagnostic_goto(true, "WARN"),   desc = "Next Warning" },
+        { "<leader>cd", vim.diagnostic.open_float,       desc = "Show Line Diagnostics" },
+      }
+
+      for _, keys in ipairs(diagnostic_keybinds) do
+        local key_opts = vim.tbl_extend("force", opts, { desc = keys.desc })
+        vim.keymap.set("n", keys[1], keys[2], key_opts)
+      end
+    end
+
+    -- Shared on_attach function (renamed for clarity)
+    local global_on_attach = function(client, bufnr)
+      setup_buffer_keymaps(bufnr)
+    end
+
+    -- Get capabilities from blink.cmp
     local capabilities = blink_cmp.get_lsp_capabilities()
 
+    -- Configure diagnostics
     vim.diagnostic.config({
       float = {
         source = "always",
@@ -90,113 +132,39 @@ return {
           [vim.diagnostic.severity.INFO] = "",
           [vim.diagnostic.severity.HINT] = "",
         },
-        linehl = {
-          [vim.diagnostic.severity.ERROR] = "",
-          [vim.diagnostic.severity.WARN] = "",
-          [vim.diagnostic.severity.INFO] = "",
-          [vim.diagnostic.severity.HINT] = "",
-        },
-        numhl = {
-          [vim.diagnostic.severity.ERROR] = "",
-          [vim.diagnostic.severity.WARN] = "",
-          [vim.diagnostic.severity.INFO] = "",
-          [vim.diagnostic.severity.HINT] = "",
-        },
+        linehl = {},
+        numhl = {},
       },
       update_in_insert = true,
       severity_sort = true,
-      virtual_text = {
-        prefix = "•",
-      },
+      virtual_text = { prefix = "•" },
     })
 
-    lspconfig["eslint"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
-      settings = {
-        workingDirectory = { mode = "auto" },
-        format = true,
-      },
-    })
+    -- Server configurations
+    local servers = {
+      eslint = {},
+      html = {},
+      ts_ls = {},
+      cssls = {},
+      tailwindcss = {},
+      prismals = {},
+      graphql = {},
+      pyright = {},
+      rust_analyzer = {},
+      lua_ls = {},
+      svelte = {},
+    }
 
-    lspconfig["html"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+    -- Setup servers with shared configuration
+    for server, opts in pairs(servers) do
+      -- Merge the user's server-specific config (like filetypes, custom settings, etc.)
+      -- This will overwrite 'on_attach' or 'capabilities' if they are defined in user_server_config.
+      local cfg = vim.tbl_deep_extend("force", {
+        on_attach    = global_on_attach,
+        capabilities = capabilities,
+      }, opts)
 
-    lspconfig["ts_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig["cssls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig["tailwindcss"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig["svelte"].setup({
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-
-        if client.name == "svelte" then
-          vim.api.nvim_create_autocmd("BufWritePost", {
-            pattern = { "*.js", "*.ts" },
-            group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
-            callback = function(ctx)
-              -- Here use ctx.match instead of ctx.file
-              client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-            end,
-          })
-        end
-      end,
-    })
-
-    lspconfig["prismals"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig["graphql"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-    })
-
-    lspconfig["pyright"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig["rust_analyzer"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig["lua_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = { -- custom settings for lua
-        Lua = {
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            -- make language server aware of runtime files
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
-            },
-          },
-        },
-      },
-    })
+      vim.lsp.config(server, cfg)
+    end
   end,
 }

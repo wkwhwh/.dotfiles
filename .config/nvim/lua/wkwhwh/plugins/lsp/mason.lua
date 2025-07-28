@@ -8,14 +8,16 @@ return {
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
     local mason_tool_installer = require("mason-tool-installer")
+
     mason.setup({
       ui = {
         border = "rounded",
       },
     })
+
     mason_lspconfig.setup({
-      -- list of servers for mason to install
       ensure_installed = {
+        "eslint",
         "ts_ls",
         "html",
         "cssls",
@@ -27,9 +29,8 @@ return {
         "pyright",
         "rust_analyzer",
       },
-      -- auto-install configured servers (with lspconfig)
-      automatic_installation = true, -- not the same as ensure_installed
     })
+
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
@@ -37,7 +38,7 @@ return {
         "isort",    -- python formatter
         "black",    -- python formatter
         "pylint",   -- python linter
-        "eslint",   -- js linter
+        "eslint",   -- js linter (this is the CLI tool, ESLint LSP is handled above)
       },
     })
   end,

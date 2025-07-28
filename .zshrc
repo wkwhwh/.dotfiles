@@ -1,9 +1,9 @@
+# Clone and compile to wordcode missing plugins.
 function zcompile-many() {
   local f
   for f; do zcompile -R -- "$f".zwc "$f"; done
 }
 
-# Clone and compile to wordcode missing plugins.
 if [[ ! -e ~/zsh-plugins/zsh-syntax-highlighting ]]; then
   git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-plugins/zsh-syntax-highlighting
   zcompile-many ~/zsh-plugins/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/*/*.zsh}
@@ -35,32 +35,6 @@ source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
 source ~/zsh-plugins/.p10k.zsh
 
-# Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# nvmrc
-autoload -U add-zsh-hook
-load-nvmrc() {
-    local node_version="$(nvm version)"
-        local nvmrc_path="$(nvm_find_nvmrc)"
-
-        if [ -n "$nvmrc_path" ]; then
-            local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-                if [ "$nvmrc_node_version" = "N/A" ]; then
-                    nvm install
-                        elif [ "$nvmrc_node_version" != "$node_version" ]; then
-                        nvm use --silent
-                        fi
-                        elif [ "$node_version" != "$(nvm version default)" ]; then
-                        nvm use --silent default
-                        fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
 # python venv
 python_venv() {
   MYVENV=./.venv
@@ -86,6 +60,10 @@ alias dtf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 # Kitty
 alias icat="kitten icat"
 
+# Squeezelite
+alias squeezelite='/Applications/Squeezelite.app/Contents/MacOS/squeezelite'
+alias sqzlt='/Users/marcdavid/scripts/squeezelite_monitor.sh'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/zsh-plugins/.p10k.zsh
 
@@ -94,3 +72,4 @@ export HOMEBREW_NO_ANALYTICS=1
 
 source <(kubectl completion zsh)
 
+eval "$(mise activate zsh)"

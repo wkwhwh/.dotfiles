@@ -37,7 +37,22 @@ return {
     },
     keymap = {
       preset = "default",
-      ["<C-space>"] = {},
+      ['<C-e>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      ['<C-y>'] = { 'hide' },
+      ['<Tab>'] = { 'select_and_accept', 'fallback' },
+
+      ['<Up>'] = {},
+      ['<Down>'] = {},
+      ['<C-p>'] = { 'select_prev', 'fallback' },
+      ['<C-n>'] = { 'select_next', 'fallback' },
+
+      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+
+      ['<C-l>'] = { 'snippet_forward', 'fallback' },
+      ['<C-h>'] = { 'snippet_backward', 'fallback' },
+
+      ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
     },
     appearance = {
       use_nvim_cmp_as_default = true,
